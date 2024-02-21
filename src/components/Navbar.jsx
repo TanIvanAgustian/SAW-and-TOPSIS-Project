@@ -66,7 +66,7 @@ export default function Navbar() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
     return (
-        <header className="bg-blue-900">
+        <header className="bg-blue-800/50 hover:bg-blue-800/100 absolute z-10 w-full">
         <nav
             className="mx-auto flex max-w-7xl items-center justify-between pb-6"
             aria-label="Global"
@@ -102,9 +102,9 @@ export default function Navbar() {
             </div>
 
             <Popover.Group className="hidden lg:flex lg:gap-x-12">
-            <a href="#" className="text-sm font-semibold leading-6 text-amber-50 px-2 rounded hover:bg-white">
+            <Link to="/" className="text-sm font-semibold leading-6 text-amber-50 px-2 rounded hover:bg-white">
                 Home
-            </a>
+            </Link>
             <Popover className="relative">
                 <Popover.Button className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-amber-50">
                 Our Program
@@ -174,9 +174,9 @@ export default function Navbar() {
             <a href="#" className="text-sm font-semibold leading-6 text-amber-50 px-2 rounded hover:bg-white">
                 Organization
             </a>
-            <a href="#" className="text-sm font-semibold leading-6 text-amber-50 px-2 rounded hover:bg-white">
+            <Link to="/about us" className="text-sm font-semibold leading-6 text-amber-50 px-2 rounded hover:bg-white">
                 About Us
-            </a>
+            </Link>
             </Popover.Group>
             </div>
         </nav>

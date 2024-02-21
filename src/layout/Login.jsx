@@ -42,7 +42,6 @@ export default function Login(){
                     ){
                         setAuthCookie(items.id, items.position)
                         openAlert("success", "Login Berhasil, Selamat Datang "+items.name);
-                        window.location.reload();
                     }else{
                       openAlert("danger", "Email atau password tidak valid. Mohon coba lagi");
                     }
@@ -85,6 +84,7 @@ return(
               value={formik.values.email}
               onChange={formik.handleChange}
             />
+            
             {formik.errors.email && formik.touched.email && (
               <div class="bg-red-100 border-s-4 border-red-500 rounded-b text-red-900 px-4 py-2 shadow-md" role="alert">
                 <div class="flex items-center">

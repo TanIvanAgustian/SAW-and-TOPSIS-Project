@@ -9,8 +9,8 @@ export default withMT({
   ],
   theme: {
     backgroundImage: {
-      'background': "url('/assets/padus.jpg')",
-      'backgroundlogin': "url('/src/assets/padus.jpg')"
+      'backgroundlogin': "url('/src/assets/padus.jpg')",
+      'kaken':"url('/src/assets/kaken.jpeg')",
     },
     screens: {
       'sm': '640px',
@@ -18,7 +18,7 @@ export default withMT({
       'lg': '1024px',
       'xl': '1280px',
       '2xl': '1536px',
-    },
+    }
   },
   plugins: [
     require('flowbite/plugin'),
