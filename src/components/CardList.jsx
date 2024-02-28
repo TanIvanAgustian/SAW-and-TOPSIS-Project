@@ -16,7 +16,7 @@ export default function CardList(props) {
       "grid lg:grid-cols-2 justify-between md:grid-cols-1 lg:mx-[200px] md:mx-[100px]";
   } else {
     style =
-      "grid lg:grid-cols-1 justify-between md:grid-cols-2 lg:mx-[200px] md:mx-[100px]";
+      "grid lg:grid-cols-1 justify-between md:grid-cols-2 lg:mx-[350px] md:mx-[100px]";
   }
 
   return (
@@ -29,10 +29,10 @@ export default function CardList(props) {
           <Card className="mt-6 w-auto mx-2 bg-indigo-700 rounded-2xl text-white pt-3 px-3 pb-[75px] ">
             <CardHeader
               color="blue-gray"
-              className="relative h-auto rounded-full"
+              className="relative lg:w-[300px] lg:h-[300px] sm:h-[50px] sm:w-[50px] self-center rounded-full"
             >
               <img
-                className="bg-transparent"
+                className="bg-transparent aspect-square object-cover"
                 src={anggota.image}
                 alt="card-image"
               />
@@ -50,7 +50,7 @@ export default function CardList(props) {
                 <ul className="flex gap-6">
                   <li>
                     <a
-                      href="#"
+                      href={anggota.facebook}
                       rel="noreferrer"
                       target="_blank"
                       className="text-white transition hover:opacity-75"
@@ -74,7 +74,7 @@ export default function CardList(props) {
 
                   <li>
                     <a
-                      href="#"
+                      href={anggota.instagram}
                       rel="noreferrer"
                       target="_blank"
                       className="text-white transition hover:opacity-75"
@@ -98,7 +98,7 @@ export default function CardList(props) {
 
                   <li>
                     <a
-                      href="#"
+                      href={anggota.twitter}
                       rel="noreferrer"
                       target="_blank"
                       className="text-white transition hover:opacity-75"
@@ -131,10 +131,10 @@ export default function CardList(props) {
           <Card className="mt-6 w-[275px] mx-1 bg-indigo-700 rounded-2xl text-white pt-3 pb-[75px]">
             <CardHeader
               color="blue-gray"
-              className="relative h-auto rounded-full"
+              className="relative w-[200px] h-[200px] m-1 self-center rounded-full"
             >
               <img
-                className="bg-transparent"
+                className="bg-transparent aspect-square object-cover"
                 src={anggota.image}
                 alt="card-image"
               />
