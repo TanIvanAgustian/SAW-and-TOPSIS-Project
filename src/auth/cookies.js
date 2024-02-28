@@ -20,7 +20,7 @@ export function getAuthCookiePosition() {
     return position
 }
 
-export function removeAuthCookie() {
+export function RemoveAuthCookie() {
     cookies.remove("token")
     cookies.remove("position")
 }

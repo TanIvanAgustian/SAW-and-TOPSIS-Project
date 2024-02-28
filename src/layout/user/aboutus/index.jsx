@@ -1,10 +1,11 @@
 import BreadCrumb from "../../../components/Breadcrumb";
-import { GraphQlLeader } from "../../../graphql/GraphQlUsers";
+import { GraphQlUsers } from "../../../graphql/GraphQlUsers";
 import Loading from "../../../components/Loading";
 import { Link } from "react-router-dom";
+import { GetAllPeopleByPosition } from "../../../components/GetAllPeople";
 
 export default function AboutUs() {
-  const { data, loading, error } = GraphQlLeader();
+  const {ketua,loading,error} = GetAllPeopleByPosition()
   const achievement = [
     "Peraih Juara III Lomba Paduan Suara Konsumen Cerdas Disperindag Jawa Tengah",
     "Peraih Gold Medal di 1st Taipei International Choral Competition kategori “Folklore” tahun 2018",
@@ -37,15 +38,15 @@ export default function AboutUs() {
           ) : (
             <div>
               <h1 className="font-black text-3xl text-center capitalize mb-3">
-                {data?.users[0]?.position}
+                {ketua[0].position}
               </h1>
               <h1 className="font-extrabold text-xl text-center capitalize">
-                {data?.users[0]?.name}
+                {ketua[0].name}
               </h1>
               <div className="flex my-6 justify-around">
                 <img
                   className="w-3/12 h-full rounded-full place-self-center"
-                  src={data?.users[0]?.image}
+                  src={ketua[0].image}
                   alt="new"
                 />
                 <div className="w-8/12">

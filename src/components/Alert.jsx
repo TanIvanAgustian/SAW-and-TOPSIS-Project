@@ -13,7 +13,7 @@ const Alert = ({ variant, message, onClose }) => {
         danger: "bg-red-50",
     };
     return (
-        <div className="fixed inset-0 top-10 h-fit flex items-start justify-center z-20 transition-opacity opacity-100">
+        <div className="fixed inset-0 top-20 h-fit flex items-start justify-center z-20 transition-opacity opacity-100">
             <div
                 className={`flex justify-between items-center min-w-[343px] w-fit h-[44px] ${variants[variant]}`}
                 role="alert"
