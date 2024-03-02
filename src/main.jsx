@@ -8,6 +8,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import { ApolloProvider } from "@apollo/client";
+import 'aos/dist/aos.css';
 
 import Root from "./routes/Root";
 import Dashboard from "./layout/user/dashboard";
@@ -21,6 +22,9 @@ import LoggedIn, { LoggedOut } from "./auth/PrivateRoute";
 import UsersData from "./layout/admin/usersdata";
 import AddUsers from "./layout/admin/usersdata/AddUser";
 import EditUsers from "./layout/admin/usersdata/EditUser";
+import Events from "./layout/admin/events";
+import AddEvents from "./layout/admin/events/AddEvent";
+import EditEvents from "./layout/admin/events/EditEvent";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -38,6 +42,10 @@ const router = createBrowserRouter(
           <Route path="/admin" element={<UsersData />} />
           <Route path="/admin/adduser" element={<AddUsers />} />
           <Route path="/admin/edituser/:id" element={<EditUsers/>} />
+          
+          <Route path="/admin/programs" element={<Events />} />
+          <Route path="/admin/programs/addevent" element={<AddEvents />} />
+          <Route path="/admin/programs/editevent/:id" element={<EditEvents />} />
         </Route>
       </Route>
       <Route path="*" element={<NotFound />} />

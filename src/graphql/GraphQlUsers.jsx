@@ -1,11 +1,8 @@
 import { gql, useMutation, useQuery, useSubscription } from "@apollo/client";
 
-{
-  /*Menampilkan semua User*/
-}
 const getUsers = gql`
   subscription MySubscription {
-    users {
+    users (order_by: {created_at: asc}){
       image
       email
       name
@@ -18,29 +15,12 @@ const getUsers = gql`
       instagram
       facebook
       twitter
+      created_at
     }
   }
 `;
 export function GraphQlUsers() {
   const { data, loading, error } = useSubscription(getUsers);
-  return { data, loading, error };
-}
-
-const getLeader = gql`
-  subscription MySubscription {
-    users(
-      where: { position: { _eq: "ketua" }, _and: { status: { _eq: true } } }
-    ) {
-      image
-      name
-      position
-      voice_type
-    }
-  }
-`;
-
-export function GraphQlLeader() {
-  const { data, loading, error } = useSubscription(getLeader);
   return { data, loading, error };
 }
 
@@ -100,7 +80,7 @@ const updateUserById = gql`
   }
 `;
 
-export function GrpahQLUpdateUsersById() {
+export function GraphQLUpdateUsersById() {
   const [UpdateUsers, loading, error] = useMutation(updateUserById);
   return { UpdateUsers, LoadingUpdate: loading, ErrorUpdate: error };
 }

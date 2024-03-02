@@ -3,6 +3,7 @@ import { GraphQlUsers } from "../../../graphql/GraphQlUsers";
 import Loading from "../../../components/Loading";
 import { Link } from "react-router-dom";
 import { GetAllPeopleByPosition } from "../../../components/GetAllPeople";
+import Footers from "../../../components/Footer";
 
 export default function AboutUs() {
   const {ketua,loading,error} = GetAllPeopleByPosition()
@@ -31,8 +32,8 @@ export default function AboutUs() {
           </div>
         </div>
       </div>
-      <div className="bg-blue-700 relative top-[400px] py-16">
-        <div className=" bg-white rounded mx-16 p-8">
+      <div className="bg-blue-700 relative top-[400px] pt-16">
+        <div className=" bg-white rounded mx-16 p-8 mb-16">
           {loading ? (
             <Loading />
           ) : (
@@ -157,6 +158,7 @@ export default function AboutUs() {
             </div>
           )}
         </div>
+        <Footers/>
       </div>
     </div>
   );

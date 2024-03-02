@@ -4,7 +4,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import {
   GraphQlUsers,
-  GrpahQLUpdateUsersById,
+  GraphQLUpdateUsersById,
 } from "../../../graphql/GraphQlUsers";
 import Alert from "../../../components/Alert";
 import { useNavigate, useParams } from "react-router-dom";
@@ -20,7 +20,7 @@ export default function EditUsers() {
 
   const [images, setImages] = useState("");
   const [url, setUrl] = useState("");
-  const { UpdateUsers, LoadingUsers, DeleteUsers } = GrpahQLUpdateUsersById();
+  const { UpdateUsers, LoadingUsers, DeleteUsers } = GraphQLUpdateUsersById();
 
   useEffect(() => {
     if (data) {

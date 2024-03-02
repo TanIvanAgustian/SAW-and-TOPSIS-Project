@@ -4,13 +4,20 @@ import DisclosureItems from "../../../components/Disclosure";
 import CarouselItems from "../../../components/Carousel";
 import Footers from "../../../components/Footer";
 import Background from "../../../assets/background.mp4";
+import AOS from "aos";
+import { useEffect } from "react";
 
 export default function Dashboard() {
+  useEffect(() => {
+    AOS.init({ duration: 2000 });
+  });
+
   const CarouselImages = [
     "https://img.antaranews.com/cache/1200x800/2023/07/26/IMG_20230725_232910.jpg.webp",
     "https://static.promediateknologi.id/crop/0x0:0x0/0x0/webp/photo/akurat/gallerybiro/2023/07/big/img_64c22997026ce0-49642292-15475447.jpeg",
     "https://cdn-u1-gnfi.imgix.net/post/large-39a65-img-20180807-wa0006-dfe3a47ba9af08ccea62a1f9ffa96e30.jpg?fit=crop&crop=faces%2Centropy&lossless=true&auto=compress%2Cformat&w=730&h=486",
   ];
+  
   const Disclosure = [
     {
       title: "What is your refund policy?",
@@ -34,10 +41,13 @@ export default function Dashboard() {
       </video>
       <div className="absolute h-full w-full top-80 text-white">
         <div className="flex justify-center p-4 font-bold">
-          <h1 className="text-5xl uppercase"> Selamat Datang </h1>
+          <h1 className="text-5xl uppercase">
+            {" "}
+            Selamat Datang{" "}
+          </h1>
         </div>
         <div className="flex justify-center p-4 font-bold">
-          <h1 className="flex items-center text-3xl font-extrabold ">
+          <h1 className="flex items-center text-3xl font-extrabold">
             Gita Dian Nuswa
             <span class="bg-blue-100 text-blue-800 text-2xl font-semibold me-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ms-2">
               Official Website
@@ -47,14 +57,14 @@ export default function Dashboard() {
 
         <div className="flex justify-center p-4 font-bold">
           <a
-            href="#"
-            class="me-3 inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:ring-red-300 dark:focus:ring-red-900"
+            href="https://www.youtube.com/@GitaDianNuswa"
+            class="hover:animate-fast-waving me-3 inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:ring-red-300 dark:focus:ring-red-900"
           >
             Youtube Channel
           </a>
           <a
             href="#"
-            class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900"
+            class="hover:animate-fast-waving inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900"
           >
             Learn more
             <svg
@@ -76,7 +86,7 @@ export default function Dashboard() {
         </div>
       </div>
       <div className="p-6 m-12 bg-white">
-        <h1 className="uppercase text-center mb-4 text-3xl font-extrabold leading-none tracking-tight text-gray-900 md:text-4xl lg:text-5xl dark:text-white">
+        <h1 data-aos="zoom-in-up" className="uppercase text-center mb-4 text-3xl font-extrabold leading-none tracking-tight text-gray-900 md:text-4xl lg:text-5xl dark:text-white">
           Gita
           <mark className="px-2 py-0 bg-transparent text-blue-600">Dian</mark>
           Nuswa
@@ -85,7 +95,7 @@ export default function Dashboard() {
           </mark>
         </h1>
 
-        <blockquote class="text-xl italic flex justify-center font-semibold text-center text-black">
+        <blockquote data-aos="zoom-in-up" class="text-xl italic flex justify-center font-semibold text-center text-black">
           <p className="w-8/12">
             "Selamat datang di website official kami, tempat di mana setiap klik
             adalah petualangan baru. disini, kami mengundang Anda untuk
@@ -96,7 +106,7 @@ export default function Dashboard() {
           </p>
         </blockquote>
 
-        <div class="inline-flex items-center justify-center w-full">
+        <div class="inline-flex items-center justify-center w-full" data-aos="zoom-in-up">
           <hr class="w-64 h-1 my-8 bg-gray-900 border-0 rounded dark:bg-gray-700" />
           <div class="absolute px-4 -translate-x-1/2 bg-white left-1/2 dark:bg-gray-900">
             <svg
@@ -111,7 +121,10 @@ export default function Dashboard() {
           </div>
         </div>
 
-        <CarouselItems images={CarouselImages} />
+        <div data-aos="zoom-in-up">
+          <CarouselItems images={CarouselImages}/>
+        </div>
+        
         <div className="w-full px-4 py-16">
           <div className="grid grid-flow-col justify-stretch w-full max-w bg-white p-2">
             <DisclosureItems items={Disclosure} />
