@@ -1,7 +1,12 @@
 import { XMarkIcon, CheckIcon } from "@heroicons/react/24/outline";
-import React from "react";
+import React, { useEffect } from "react";
+import AOS from "aos"
 
 const Alert = ({ variant, message, onClose }) => {
+
+    useEffect(()=>{
+        AOS.init({duration:400})
+    })
     const variants = {
         success:
             "bg-green-600 border w-1/2 text-white font-normal text-p3 px-4 py-2 rounded-full",
@@ -13,7 +18,7 @@ const Alert = ({ variant, message, onClose }) => {
         danger: "bg-red-50",
     };
     return (
-        <div className="fixed inset-0 top-20 h-fit flex items-start justify-center z-20 transition-opacity opacity-100">
+        <div className="fixed inset-0 top-20 h-fit flex items-start justify-center z-20 transition-opacity opacity-100" data-aos="fade-down">
             <div
                 className={`flex justify-between items-center min-w-[343px] w-fit h-[44px] ${variants[variant]}`}
                 role="alert"

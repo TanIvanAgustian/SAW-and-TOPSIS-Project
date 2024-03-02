@@ -1,9 +1,16 @@
 
 'use client';
+import { useEffect } from "react";
 import Logo from "../assets/logo_PSM.png";
 import { MapPinIcon, PhoneIcon, EnvelopeIcon } from "@heroicons/react/24/solid";
+import AOS from "aos";
 
 export default function Footers() {
+
+  useEffect(() => {
+    AOS.init({duration:400})
+  })
+
   return (
     <footer className="bg-indigo-900 lg:grid lg:grid-cols-5">
   <div className="relative block h-32 lg:col-span-2 lg:h-full">
@@ -17,19 +24,19 @@ export default function Footers() {
   <div className="px-4 py-16 sm:px-6 lg:col-span-3 lg:px-8">
     <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
       <div>
-        <p>
+        <p data-aos="fade-right" data-aos-delay="100">
           <span className="  tracking-wide text-xl text-white"> Hubungi Kami </span>
         </p>
 
-        <p className='flex m-2 text-white my-3'>
+        <p className='flex m-2 text-white my-3' data-aos="fade-right" data-aos-delay="150">
         <MapPinIcon className="h-auto w-6 me-2" />
             <span className="w-9/12"> JL. Sadewa No.67, pendrikan Kidul, Kecamatan Semarang Tengah, Kota Semarang</span>
         </p>
-        <p className='flex m-2 text-white mb-3'>
+        <p className='flex m-2 text-white mb-3' data-aos="fade-right" data-aos-delay="200">
         <PhoneIcon className="h-6 w-6 me-2" />
             <span> 08979986887</span>
         </p>
-        <p className='flex m-2 text-white mb-3'>
+        <p className='flex m-2 text-white mb-3' data-aos="fade-right" data-aos-delay="250">
         <EnvelopeIcon className="h-6 w-6 me-2" />
             <span> gitadiannuswaudinus@gmail.com</span>
         </p>
@@ -37,49 +44,49 @@ export default function Footers() {
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div>
-          <p className="font-medium text-white">Link</p>
+          <p className="font-medium text-white" data-aos="fade-right" data-aos-delay="100">Link</p>
 
           <ul className="mt-6 space-y-4 text-sm">
             <li>
-              <a href="#" className="text-white transition hover:opacity-75"> Home </a>
+              <a href="#" className="text-white transition hover:opacity-75" data-aos="fade-right" data-aos-delay="150"> Home </a>
             </li>
 
             <li>
-              <a href="#" className="text-white transition hover:opacity-75"> News </a>
+              <a href="#" className="text-white transition hover:opacity-75" data-aos="fade-right" data-aos-delay="200"> News </a>
             </li>
 
             <li>
-              <a href="#" className="text-white transition hover:opacity-75"> Events </a>
+              <a href="#" className="text-white transition hover:opacity-75" data-aos="fade-right" data-aos-delay="250"> Events </a>
             </li>
 
             <li>
-              <a href="#" className="text-white transition hover:opacity-75"> Achievements </a>
+              <a href="#" className="text-white transition hover:opacity-75" data-aos="fade-right" data-aos-delay="300"> Achievements </a>
             </li>
 
           </ul>
         </div>
 
         <div>
-          <p className="font-medium text-white"> Tentang Kami </p>
+          <p className="font-medium text-white" data-aos="fade-right" data-aos-delay="100"> Tentang Kami </p>
 
           <ul className="mt-6 space-y-4 text-sm">
             <li>
-              <a href="#" className="text-white transition hover:opacity-75"> Ketua </a>
+              <a href="#" className="text-white transition hover:opacity-75" data-aos="fade-right" data-aos-delay="150"> Ketua </a>
             </li>
 
             <li>
-              <a href="#" className="text-white transition hover:opacity-75"> Visi Misi Organisasi </a>
+              <a href="#" className="text-white transition hover:opacity-75" data-aos="fade-right" data-aos-delay="200"> Visi Misi Organisasi </a>
             </li>
 
             <li>
-              <a href="#" className="text-white transition hover:opacity-75"> Struktur Organisasi </a>
+              <a href="#" className="text-white transition hover:opacity-75" data-aos="fade-right" data-aos-delay="250"> Struktur Organisasi </a>
             </li>
           </ul>
         </div>
       </div>
     </div>
 
-    <div className="mt-12 border-t border-blue-100 pt-4">
+    <div className="mt-12 border-t border-blue-100 pt-4" data-aos="fade-right" data-aos-anchor-placement="top-bottom">
       <div className="sm:flex sm:items-center sm:justify-between">
       <ul className="flex gap-6">
           <li>

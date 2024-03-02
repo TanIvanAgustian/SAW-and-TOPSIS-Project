@@ -1,20 +1,18 @@
 import { useEffect, useState } from "react";
 import Search from "../../../components/Search";
-import {
-  GraphQlDeleteUsersById,
-  GraphQlUsers,
-} from "../../../graphql/GraphQlUsers";
+import { GraphQlEvents, GraphQlDeleteEventsById } from "../../../graphql/GraphQlEvents";
 import Pagination from "../../../components/Pagination";
 import { PencilIcon, TrashIcon, PlusIcon } from "@heroicons/react/24/solid";
 import Loading from "../../../components/Loading";
 import { Link } from "react-router-dom";
+import dayjs from "dayjs";
 
-export default function UsersData() {
+export default function Events(){
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(10);
 
-  const { data, loading, error } = GraphQlUsers();
-  const { DeleteUsers, LoadingDelete, ErrorDelete } = GraphQlDeleteUsersById();
+  const { data, loading, error } = GraphQlEvents();
+  const { DeleteEvents, LoadingDelete, ErrorDelete } = GraphQlDeleteEventsById()
 
   const [search, setSearch] = useState("");
 
@@ -25,8 +23,7 @@ export default function UsersData() {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   const handleDelete = (idx) => {
-    console.log(idx);
-    DeleteUsers({
+    DeleteEvents({
       variables: {
         id: idx,
       },
@@ -35,7 +32,7 @@ export default function UsersData() {
 
   return (
     <div>
-      <h2 class="text-4xl font-bold dark:text-white mb-6 ms-6">List Anggota</h2>
+      <h2 class="text-4xl font-bold dark:text-white mb-6 ms-6">List Event</h2>
       {loading && LoadingDelete ? (
         <Loading />
       ) : (
@@ -51,10 +48,10 @@ export default function UsersData() {
               value={search}
             />
             <Link
-              to="./adduser"
+              to="./addevent"
               className="mt-3 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-3xl text-sm p-2 w-80 text-center flex items-center justify-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >
-              Tambahkan Anggota
+              Tambahkan Event
               <PlusIcon className="h-6 w-6 ml-1" />
             </Link>
           </div>
@@ -64,23 +61,21 @@ export default function UsersData() {
               <thead className="text-center bg-blue-800 text-white">
                 <tr>
                   <th className="px-4 py-2">No</th>
-                  <th className="px-4 py-2">Nama</th>
-                  <th className="px-4 py-2">Email</th>
-                  <th className="px-4 py-2">Suara</th>
-                  <th className="px-4 py-2">Devisi</th>
-                  <th className="px-4 py-2">Angkatan</th>
+                  <th className="px-4 py-2">Judul</th>
+                  <th className="px-4 py-2">Isi</th>
+                  <th className="px-4 py-2">Jenis Program</th>
+                  <th className="px-4 py-2">Waktu Event</th>
                   <th className="px-4 py-2">Aksi</th>
                 </tr>
               </thead>
               <tbody className="text-sm">
-                {data?.users
+                {data?.events
                   .filter(
-                    (user) =>
-                      user.name.toLowerCase().includes(search.toLowerCase()) &&
-                      user.name.toLowerCase() != "admin"
+                    (event) =>
+                      event.title.toLowerCase().includes(search.toLowerCase())
                   )
                   .slice(indexOfFirstItem, indexOfLastItem)
-                  .map((user, index) => (
+                  .map((event, index) => (
                     <tr
                       key={index}
                       className={
@@ -91,26 +86,23 @@ export default function UsersData() {
                         {index + indexOfFirstItem + 1}
                       </td>
                       <td className="border px-4 py-2 min-w-[250px]">
-                        {user.name}
+                        {event.title}
                       </td>
                       <td className="border px-4 py-2 min-w-[250px]">
-                        {user.email}
+                        {event.content}
                       </td>
                       <td className="border px-4 py-2 min-w-[120px]">
-                        {user.voice_type}
+                        {event.program_name}
                       </td>
                       <td className="border px-4 py-2 min-w-[180px]">
-                        {user.position}
-                      </td>
-                      <td className="border px-4 py-2 min-w-[100px] text-center">
-                        {user.angkatan}
+                        {dayjs(event.start_date).format('MMM D, YYYY H:mm A')}
                       </td>
                       <td className="border px-4 py-2 min-w-[150px]">
                         <div className="flex w-full justify-around">
                           <Link
                             type="button"
                             class="text-green-700 border-1 border-green-700 hover:bg-green-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center dark:border-green-500 dark:text-green-500 dark:hover:text-white dark:focus:ring-green-800 dark:hover:bg-green-500"
-                            to={"./edituser/"+user.id}
+                            to={"./editevent/"+event.id}
                           >
                             <PencilIcon className="w-4 h-4" />
                             <span class="sr-only">Edit</span>
@@ -118,7 +110,7 @@ export default function UsersData() {
                           <button
                             type="button"
                             class="text-red-700 border-1 border-red-700 hover:bg-red-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:focus:ring-red-800 dark:hover:bg-red-500"
-                            onClick={() => handleDelete(user.id)}
+                            onClick={() => handleDelete(event.id)}
                           >
                             <TrashIcon className="w-4 h-4" />
                             <span class="sr-only">Delete</span>
@@ -139,31 +131,28 @@ export default function UsersData() {
                   <span className="font-medium">{indexOfFirstItem}</span> to{" "}
                   <span className="font-medium">
                     {Math.ceil(
-                      data?.users.filter(
-                        (user) =>
-                          user.name
+                      data?.events.filter(
+                        (event) =>
+                          event.title
                             .toLowerCase()
-                            .includes(search.toLowerCase()) &&
-                          user.name.toLowerCase() != "admin"
+                            .includes(search.toLowerCase())
                       ).length / itemsPerPage
                     ) == currentPage
-                      ? data?.users.filter(
-                          (user) =>
-                            user.name
+                      ? data?.events.filter(
+                          (event) =>
+                            event.title
                               .toLowerCase()
-                              .includes(search.toLowerCase()) &&
-                            user.name.toLowerCase() != "admin"
+                              .includes(search.toLowerCase())
                         ).length
                       : indexOfLastItem}
                   </span>{" "}
                   of{" "}
                   <span className="font-medium">
-                    {data?.users.filter(
-                      (user) =>
-                        user.name
+                    {data?.events.filter(
+                      (event) =>
+                        event.title
                           .toLowerCase()
-                          .includes(search.toLowerCase()) &&
-                        user.name.toLowerCase() != "admin"
+                          .includes(search.toLowerCase())
                     ).length + " "}
                   </span>
                   results
@@ -172,10 +161,9 @@ export default function UsersData() {
               <Pagination
                 itemsPerPage={itemsPerPage}
                 totalItems={
-                  data?.users.filter(
-                    (user) =>
-                      user.name.toLowerCase().includes(search.toLowerCase()) &&
-                      user.name.toLowerCase() != "admin"
+                  data?.events.filter(
+                    (event) =>
+                      event.title.toLowerCase().includes(search.toLowerCase())
                   ).length
                 }
                 paginate={paginate}

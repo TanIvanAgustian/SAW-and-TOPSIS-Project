@@ -5,6 +5,7 @@ import Footers from "../../../components/Footer";
 import CardList from "../../../components/CardList";
 import { GetAllPeopleByPosition } from "../../../components/GetAllPeople";
 
+
 export default function ListAnggota() {
   const {
     ketua,
