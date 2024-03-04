@@ -46,21 +46,21 @@ export default function Footers() {
         <div>
           <p className="font-medium text-white" data-aos="fade-right" data-aos-delay="100">Link</p>
 
-          <ul className="mt-6 space-y-4 text-sm">
+          <ul className="mt-6 space-y-4 text-sm" data-aos="fade-right" data-aos-delay="200">
             <li>
-              <a href="#" className="text-white transition hover:opacity-75" data-aos="fade-right" data-aos-delay="150"> Home </a>
+              <a href="#" className="text-white hover:opacity-75"> Home </a>
             </li>
 
             <li>
-              <a href="#" className="text-white transition hover:opacity-75" data-aos="fade-right" data-aos-delay="200"> News </a>
+              <a href="#" className="text-white hover:opacity-75"> News </a>
             </li>
 
             <li>
-              <a href="#" className="text-white transition hover:opacity-75" data-aos="fade-right" data-aos-delay="250"> Events </a>
+              <a href="#" className="text-white hover:opacity-75"> Events </a>
             </li>
 
             <li>
-              <a href="#" className="text-white transition hover:opacity-75" data-aos="fade-right" data-aos-delay="300"> Achievements </a>
+              <a href="#" className="text-white hover:opacity-75"> Achievements </a>
             </li>
 
           </ul>
@@ -69,17 +69,17 @@ export default function Footers() {
         <div>
           <p className="font-medium text-white" data-aos="fade-right" data-aos-delay="100"> Tentang Kami </p>
 
-          <ul className="mt-6 space-y-4 text-sm">
+          <ul className="mt-6 space-y-4 text-sm" data-aos="fade-right" data-aos-delay="200">
             <li>
-              <a href="#" className="text-white transition hover:opacity-75" data-aos="fade-right" data-aos-delay="150"> Ketua </a>
+              <a href="#" className="text-white hover:opacity-75"> Ketua </a>
             </li>
 
             <li>
-              <a href="#" className="text-white transition hover:opacity-75" data-aos="fade-right" data-aos-delay="200"> Visi Misi Organisasi </a>
+              <a href="#" className="text-white hover:opacity-75"> Visi Misi Organisasi </a>
             </li>
 
             <li>
-              <a href="#" className="text-white transition hover:opacity-75" data-aos="fade-right" data-aos-delay="250"> Struktur Organisasi </a>
+              <a href="#" className="text-white hover:opacity-75"> Struktur Organisasi </a>
             </li>
           </ul>
         </div>

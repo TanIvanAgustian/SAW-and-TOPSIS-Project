@@ -5,6 +5,7 @@ import * as Yup from "yup";
 import { GraphQlInputEvents } from "../../../graphql/GraphQlEvents";
 import Alert from "../../../components/Alert";
 import dayjs from "dayjs";
+import WYSIWYG from "../../../components/WYSIWYG";
 
 export default function AddEvents() {
   const jenisProgram = [
@@ -116,6 +117,10 @@ export default function AddEvents() {
     },
   });
 
+  const getDataFromChild = async(dialog) =>{
+    await formik.setFieldValue("content", dialog);
+  }
+
   return (
     <form onSubmit={formik.handleSubmit}>
       <div className="relative">
@@ -213,21 +218,14 @@ export default function AddEvents() {
             )}
           </div>
 
-          <div className="my-6 w-full">
+          <div className="my-6 w-full h-fit">
             <label
               for="success"
               className="block mb-2 ms-2 text-sm font-medium text-green-700 dark:text-green-500"
             >
               Isi
             </label>
-            <input
-              type="text"
-              id="content"
-              className="bg-green-50 border border-green-500 text-green-900 dark:text-green-400 placeholder-green-700 dark:placeholder-green-500 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-green-500"
-              placeholder="Isi"
-              value={formik.values.content}
-              onChange={formik.handleChange}
-            />
+            <WYSIWYG sendDataToParent={getDataFromChild} Values={"<p>Masukkan Content</p>"}/>
             {formik.errors.content && formik.touched.content && (
               <div className="text-red-500 text-sm ms-2 mt-2">
                 {formik.errors.content}

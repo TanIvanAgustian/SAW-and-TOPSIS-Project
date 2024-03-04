@@ -1,18 +1,18 @@
 import { useEffect, useState } from "react";
 import Search from "../../../components/Search";
-import { GraphQlEvents, GraphQlDeleteEventsById } from "../../../graphql/GraphQlEvents";
+import { GraphQlNews, GraphQlDeleteNewsById } from "../../../graphql/GrpahQlNews";
 import Pagination from "../../../components/Pagination";
 import { PencilIcon, TrashIcon, PlusIcon } from "@heroicons/react/24/solid";
 import Loading from "../../../components/Loading";
 import { Link } from "react-router-dom";
 import dayjs from "dayjs";
 
-export default function Events(){
+export default function News(){
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(5);
 
-  const { data, loading, error } = GraphQlEvents();
-  const { DeleteEvents, LoadingDelete, ErrorDelete } = GraphQlDeleteEventsById()
+  const { data, loading, error } = GraphQlNews();
+  const { DeleteNews, LoadingDelete, ErrorDelete } = GraphQlDeleteNewsById()
 
   const [search, setSearch] = useState("");
 
@@ -23,7 +23,7 @@ export default function Events(){
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   const handleDelete = (idx) => {
-    DeleteEvents({
+    DeleteNews({
       variables: {
         id: idx,
       },
@@ -32,7 +32,7 @@ export default function Events(){
 
   return (
     <div>
-      <h2 class="text-4xl font-bold dark:text-white mb-6 ms-6">List Event</h2>
+      <h2 class="text-4xl font-bold dark:text-white mb-6 ms-6">List News</h2>
       {loading && LoadingDelete ? (
         <Loading />
       ) : (
@@ -48,10 +48,10 @@ export default function Events(){
               value={search}
             />
             <Link
-              to="./addevent"
+              to="./addnews"
               className="mt-3 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-3xl text-sm p-2 w-80 text-center flex items-center justify-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >
-              Tambahkan Event
+              Tambahkan Berita
               <PlusIcon className="h-6 w-6 ml-1" />
             </Link>
           </div>
@@ -62,19 +62,18 @@ export default function Events(){
                 <tr>
                   <th className="px-4 py-2">No</th>
                   <th className="px-4 py-2">Judul</th>
-                  <th className="px-4 py-2">Jenis Program</th>
-                  <th className="px-4 py-2">Waktu Event</th>
+                  <th className="px-4 py-2">Waktu Rilis</th>
                   <th className="px-4 py-2">Aksi</th>
                 </tr>
               </thead>
               <tbody className="text-sm">
-                {data?.events
+                {data?.news
                   .filter(
-                    (event) =>
-                      event.title.toLowerCase().includes(search.toLowerCase())
+                    (news) =>
+                      news.title.toLowerCase().includes(search.toLowerCase())
                   )
                   .slice(indexOfFirstItem, indexOfLastItem)
-                  .map((event, index) => (
+                  .map((news, index) => (
                     <tr
                       key={index}
                       className={
@@ -85,20 +84,17 @@ export default function Events(){
                         {index + indexOfFirstItem + 1}
                       </td>
                       <td className="border px-4 py-2 min-w-[300px]">
-                        {event.title}
-                      </td>
-                      <td className="border px-4 py-2 min-w-[120px]">
-                        {event.program_name}
+                        {news.title}
                       </td>
                       <td className="border px-4 py-2 min-w-[180px]">
-                        {dayjs(event.start_date).format('MMM D, YYYY H:mm A')}
+                        {dayjs(news.created_at).format('MMM D, YYYY H:mm A')}
                       </td>
                       <td className="border px-4 py-2 min-w-[150px]">
                         <div className="flex w-full justify-around">
                           <Link
                             type="button"
                             class="text-green-700 border-1 border-green-700 hover:bg-green-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center dark:border-green-500 dark:text-green-500 dark:hover:text-white dark:focus:ring-green-800 dark:hover:bg-green-500"
-                            to={"./editevent/"+event.id}
+                            to={"./editnews/"+news.id}
                           >
                             <PencilIcon className="w-4 h-4" />
                             <span class="sr-only">Edit</span>
@@ -106,7 +102,7 @@ export default function Events(){
                           <button
                             type="button"
                             class="text-red-700 border-1 border-red-700 hover:bg-red-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:focus:ring-red-800 dark:hover:bg-red-500"
-                            onClick={() => handleDelete(event.id)}
+                            onClick={() => handleDelete(news.id)}
                           >
                             <TrashIcon className="w-4 h-4" />
                             <span class="sr-only">Delete</span>
@@ -127,16 +123,16 @@ export default function Events(){
                   <span className="font-medium">{indexOfFirstItem}</span> to{" "}
                   <span className="font-medium">
                     {Math.ceil(
-                      data?.events.filter(
-                        (event) =>
-                          event.title
+                      data?.news.filter(
+                        (news) =>
+                          news.title
                             .toLowerCase()
                             .includes(search.toLowerCase())
                       ).length / itemsPerPage
                     ) == currentPage
-                      ? data?.events.filter(
-                          (event) =>
-                            event.title
+                      ? data?.news.filter(
+                          (news) =>
+                            news.title
                               .toLowerCase()
                               .includes(search.toLowerCase())
                         ).length
@@ -144,9 +140,9 @@ export default function Events(){
                   </span>{" "}
                   of{" "}
                   <span className="font-medium">
-                    {data?.events.filter(
-                      (event) =>
-                        event.title
+                    {data?.news.filter(
+                      (news) =>
+                        news.title
                           .toLowerCase()
                           .includes(search.toLowerCase())
                     ).length + " "}
@@ -157,9 +153,9 @@ export default function Events(){
               <Pagination
                 itemsPerPage={itemsPerPage}
                 totalItems={
-                  data?.events.filter(
-                    (event) =>
-                      event.title.toLowerCase().includes(search.toLowerCase())
+                  data?.news.filter(
+                    (news) =>
+                      news.title.toLowerCase().includes(search.toLowerCase())
                   ).length
                 }
                 paginate={paginate}
