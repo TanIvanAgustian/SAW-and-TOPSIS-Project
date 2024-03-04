@@ -2,58 +2,35 @@ import React, { useState, useCallback, useEffect } from "react";
 import { useDropzone } from "react-dropzone";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import {
-  GraphQlEvents,
-  GraphQLUpdateEventsById,
-} from "../../../graphql/GraphQlEvents";
+import { GraphQlNews, GraphQLUpdateNewsById } from "../../../graphql/GrpahQlNews";
 import Alert from "../../../components/Alert";
-import dayjs from "dayjs";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import WYSIWYG from "../../../components/WYSIWYG";
 
-export default function EditEvents() {
-  const jenisProgram = [
-    "Concert",
-    "CHA",
-    "NCC",
-    "Goes To School",
-    "Competition",
-  ];
-
-  const { id } = useParams();
-  const { data, loading, error } = GraphQlEvents();
-  const { UpdateEvents, LoadingUpdate, ErrorUpdate } =
-    GraphQLUpdateEventsById();
-  const navigate = useNavigate();
-  const [images, setImages] = useState("");
-const [url, setUrl] = useState("");
+export default function EditNews() {
   const [isAlert, setIsAlert] = useState(false);
   const [message, setMessage] = useState("");
   const [variant, setVariant] = useState("");
 
+  const { id } = useParams();
+  const { data, loading, error } = GraphQlNews();
+  const { UpdateNews, LoadingUpdate, ErrorUpdate } = GraphQLUpdateNewsById();
+  const navigate = useNavigate();
+  const [images, setImages] = useState("");
+const [url, setUrl] = useState("");
+
   useEffect(() => {
     if (data) {
-      const event = data?.events.find((element) => element.id == id);
+      const news = data?.news.find((element) => element.id == id);
       const dataInialisasi = {
-        header_image: event.header_image,
-        title: event.title,
-        content: event.content,
-        link: event.link,
-        documentation: event.documentation,
-        program_name: event.program_name,
+        image: news.image,
+        title: news.title,
+        content: news.content,
       };
-      setUrl(event.header_image);
-      setImages(event.header_image);
-
-      // Convert the start_date to the format supported by datetime-local input
-      const formattedStartDate = dayjs(event.start_date).format(
-        "YYYY-MM-DDTHH:mm"
-      );
-      formik.setValues({
-        ...dataInialisasi,
-        start_date: formattedStartDate, // Set the default value for start_date
-      });
-      console.log(formik.values);
+      formik.setValues(dataInialisasi);
+      setUrl(news.image);
+      setImages(news.image);
     }
   }, [data]);
   if (error) return <ErrorPage />;
@@ -70,41 +47,33 @@ const [url, setUrl] = useState("");
     setMessage("");
   };
 
+  
+
   const formik = useFormik({
     initialValues: {
-      header_image: null,
+      image: null,
       title: "",
       content: "",
-      link: null,
-      documentation: null,
-      program_name: "",
-      start_date: "",
     },
     validationSchema: Yup.object({
       title: Yup.string().required("Tolong Masukkan Judul Program!!"),
       content: Yup.string().required("Tolong Masukkan Deskripsi Program!!"),
-      program_name: Yup.string().required("Tolong Masukkan Jenis Program!!"),
-      start_date: Yup.string().required("Tolong Masukkan Jenis Program!!"),
     }),
     onSubmit: async () => {
-      await UpdateEvents({
-        variables: {
-          id: id,
-          object: {
-            header_image: url,
-            title: formik.values.title,
-            content: formik.values.content,
-            link: formik.values.link,
-            documentation: formik.values.documentation,
-            program_name: formik.values.program_name,
-            start_date: dayjs(formik.values.start_date),
-          },
-        },
-      });
-      openAlert("success", "Data Berhasil Diubah!!!");
-      setTimeout(() => {
-        navigate("/admin/programs");
-      }, 2000);
+        await UpdateNews({
+            variables: {
+              id: id,
+              object: {
+                image: url,
+                title: formik.values.title,
+                content: formik.values.content,
+              },
+            },
+          });
+          openAlert("success", "Berita Berhasil Diubah!!!");
+          setTimeout(() => {
+            navigate("/admin/news");
+          }, 2000);
     },
   });
 
@@ -236,7 +205,7 @@ const [url, setUrl] = useState("");
               for="success"
               className="block mb-2 ms-2 text-sm font-medium text-green-700 dark:text-green-500"
             >
-              Judul Program
+              Judul Berita
             </label>
             <input
               type="text"
@@ -253,7 +222,7 @@ const [url, setUrl] = useState("");
             )}
           </div>
 
-          <div className="my-6 w-full">
+          <div className="my-6 w-full h-fit">
             <label
               for="success"
               className="block mb-2 ms-2 text-sm font-medium text-green-700 dark:text-green-500"
@@ -267,81 +236,13 @@ const [url, setUrl] = useState("");
               </div>
             )}
           </div>
-
-          <div className="my-6">
-            <label
-              for="success"
-              className="block mb-2 ms-2 text-sm font-medium text-green-700 dark:text-green-500"
-            >
-              Link Pembelian Tiket
-            </label>
-            <input
-              type="text"
-              id="link"
-              className="bg-green-50 border border-green-500 text-green-900 dark:text-green-400 placeholder-green-700 dark:placeholder-green-500 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-green-500"
-              placeholder="Link Pembelian Tiket (bila tersedia untuk umum)"
-              value={formik.values.link}
-              onChange={formik.handleChange}
-            />
-            {formik.errors.link && formik.touched.link && (
-              <div className="text-red-500 text-sm ms-2 mt-2">
-                {formik.errors.link}
-              </div>
-            )}
-          </div>
         </div>
-      </div>
-
-      <div>
-        <label
-          for="default"
-          className="block mb-2 ms-2 text-sm font-medium text-green-700 dark:text-green-500"
-        >
-          Jenis Program
-        </label>
-        <select
-          id="program_name"
-          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          value={formik.values.program_name}
-          onChange={formik.handleChange}
-        >
-          <option value="">Pilih Jenis Program</option>
-          {jenisProgram.map((item) => (
-            <option value={item}>{item}</option>
-          ))}
-        </select>
-        {formik.errors.program_name && formik.touched.program_name && (
-          <div className="text-red-500 text-sm ms-2 mt-2">
-            {formik.errors.program_name}
-          </div>
-        )}
-      </div>
-
-      <div className="my-6">
-        <label
-          for="success"
-          className="block mb-2 ms-2 text-sm font-medium text-green-700 dark:text-green-500"
-        >
-          Waktu Pengadaan Event
-        </label>
-        <input
-          type="datetime-local"
-          id="start_date"
-          className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-          value={formik.values.start_date}
-          onChange={formik.handleChange}
-        />
-        {formik.errors.start_date && formik.touched.start_date && (
-          <div className="text-red-500 text-sm ms-2 mt-2">
-            {formik.errors.start_date}
-          </div>
-        )}
       </div>
 
       <div className="flex w-full mt-6 justify-end ">
         {/*Submit button*/}
         <div className="text-center">
-          {LoadingUpdate ? (
+          {loading ? (
             <button
               id="btn_add_product"
               className="text-p3 ms-3 mb-3 w-fit px-6 inline-block bg-blue-700 rounded-full py-2 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_rgba(0,0,0,0.2)] transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:outline-none focus:ring-0 active:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] disabled:bg-blue-400"
@@ -349,7 +250,7 @@ const [url, setUrl] = useState("");
               data-te-ripple-init=""
               disabled={!formik.dirty}
             >
-              Edit
+              Simpan
             </button>
           ) : (
             <a

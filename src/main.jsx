@@ -25,6 +25,9 @@ import EditUsers from "./layout/admin/usersdata/EditUser";
 import Events from "./layout/admin/events";
 import AddEvents from "./layout/admin/events/AddEvent";
 import EditEvents from "./layout/admin/events/EditEvent";
+import News from "./layout/admin/news";
+import AddNews from "./layout/admin/news/AddNews";
+import EditNews from "./layout/admin/news/EditNews";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -46,6 +49,10 @@ const router = createBrowserRouter(
           <Route path="/admin/programs" element={<Events />} />
           <Route path="/admin/programs/addevent" element={<AddEvents />} />
           <Route path="/admin/programs/editevent/:id" element={<EditEvents />} />
+
+          <Route path="/admin/news" element={<News />} />
+          <Route path="/admin/news/addnews" element={<AddNews />} />
+          <Route path="/admin/news/editnews/:id" element={<EditNews />} />
         </Route>
       </Route>
       <Route path="*" element={<NotFound />} />
