@@ -1,20 +1,25 @@
 import { useEffect, useState } from "react";
 import Search from "../../../components/Search";
-import { GraphQlNews, GraphQlDeleteNewsById } from "../../../graphql/GrpahQlNews";
 import Pagination from "../../../components/Pagination";
-import { PencilIcon, TrashIcon, PlusIcon } from "@heroicons/react/24/solid";
+import { PencilIcon, PlusIcon } from "@heroicons/react/24/solid";
 import Loading from "../../../components/Loading";
 import { Link } from "react-router-dom";
-import dayjs from "dayjs";
+import { GraphQlRank } from "../../../graphql/GraphQlRank";
 
-export default function News(){
+export default function RankData() {
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(5);
+  const [itemsPerPage] = useState(10);
 
-  const { NewsData, loadingNews, errorNews } = GraphQlNews();
-  const { DeleteNews, LoadingDelete, ErrorDelete } = GraphQlDeleteNewsById()
+  const { data, loading, error } = GraphQlRank();
+  const datas = data?.rank.filter((element) => element.nilai != null);
 
   const [search, setSearch] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleModal = () => {
+    setIsOpen(!isOpen);
+    console.log(isOpen);
+  };
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -22,18 +27,10 @@ export default function News(){
   // Change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-  const handleDelete = (idx) => {
-    DeleteNews({
-      variables: {
-        id: idx,
-      },
-    });
-  };
-
   return (
     <div>
-      <h2 class="text-4xl font-bold dark:text-white mb-6 ms-6">List News</h2>
-      {loadingNews && LoadingDelete ? (
+      <h2 class="text-4xl font-bold dark:text-white mb-6 ms-6">List Anggota</h2>
+      {loading ? (
         <Loading />
       ) : (
         <div>
@@ -48,10 +45,10 @@ export default function News(){
               value={search}
             />
             <Link
-              to="./addnews"
+              to={"./addrank"}
               className="mt-3 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-3xl text-sm p-2 w-80 text-center flex items-center justify-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >
-              Tambahkan Berita
+              Beri Nilai
               <PlusIcon className="h-6 w-6 ml-1" />
             </Link>
           </div>
@@ -60,20 +57,23 @@ export default function News(){
             <table className="table-auto w-full border-collapse overflow-hidden border border-blue-800">
               <thead className="text-center bg-blue-800 text-white">
                 <tr>
-                  <th className="px-4 py-2">No</th>
-                  <th className="px-4 py-2">Judul</th>
-                  <th className="px-4 py-2">Waktu Rilis</th>
+                  <th className="px-4 py-2">Peringkat</th>
+                  <th className="px-4 py-2">Nama</th>
+                  <th className="px-4 py-2">Support</th>
+                  <th className="px-4 py-2">Placement</th>
+                  <th className="px-4 py-2">Ruangan</th>
+                  <th className="px-4 py-2">Keaktifan</th>
+                  <th className="px-4 py-2">Nilai</th>
                   <th className="px-4 py-2">Aksi</th>
                 </tr>
               </thead>
               <tbody className="text-sm">
-                {NewsData?.news
-                  .filter(
-                    (news) =>
-                      news.title.toLowerCase().includes(search.toLowerCase())
+                {datas
+                  .filter((element) =>
+                    element.name.toLowerCase().includes(search.toLowerCase())
                   )
                   .slice(indexOfFirstItem, indexOfLastItem)
-                  .map((news, index) => (
+                  .map((element, index) => (
                     <tr
                       key={index}
                       className={
@@ -83,30 +83,34 @@ export default function News(){
                       <td className="border px-4 py-2 min-w-fit text-center">
                         {index + indexOfFirstItem + 1}
                       </td>
-                      <td className="border px-4 py-2 min-w-[300px]">
-                        {news.title}
+                      <td className="border px-4 py-2 min-w-[100px]">
+                        {element.name}
                       </td>
-                      <td className="border px-4 py-2 min-w-[180px]">
-                        {dayjs(news.created_at).format('MMM D, YYYY H:mm A')}
+                      <td className="border px-4 py-2 min-w-[10px] text-center">
+                        {element.support}
                       </td>
-                      <td className="border px-4 py-2 min-w-[150px]">
+                      <td className="border px-4 py-2 min-w-[10px] text-center">
+                        {element.placement}
+                      </td>
+                      <td className="border px-4 py-2 min-w-[10px] text-center">
+                        {element.ruangan}
+                      </td>
+                      <td className="border px-4 py-2 min-w-[10px] text-center">
+                        {element.keaktifan}
+                      </td>
+                      <td className="border px-4 py-2 font-black min-w-[10px] text-center">
+                        {element.nilai.toFixed(2)}
+                      </td>
+                      <td className="border px-4 py-2 min-w-[50px]">
                         <div className="flex w-full justify-around">
                           <Link
                             type="button"
                             class="text-green-700 border-1 border-green-700 hover:bg-green-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center dark:border-green-500 dark:text-green-500 dark:hover:text-white dark:focus:ring-green-800 dark:hover:bg-green-500"
-                            to={"./editnews/"+news.id}
+                            to={"./editrank/" + element.id}
                           >
                             <PencilIcon className="w-4 h-4" />
                             <span class="sr-only">Edit</span>
                           </Link>
-                          <button
-                            type="button"
-                            class="text-red-700 border-1 border-red-700 hover:bg-red-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:focus:ring-red-800 dark:hover:bg-red-500"
-                            onClick={() => handleDelete(news.id)}
-                          >
-                            <TrashIcon className="w-4 h-4" />
-                            <span class="sr-only">Delete</span>
-                          </button>
                         </div>
                       </td>
                     </tr>
@@ -123,28 +127,23 @@ export default function News(){
                   <span className="font-medium">{indexOfFirstItem}</span> to{" "}
                   <span className="font-medium">
                     {Math.ceil(
-                      NewsData?.news.filter(
-                        (news) =>
-                          news.title
-                            .toLowerCase()
-                            .includes(search.toLowerCase())
+                      datas.filter((element) =>
+                        element.name
+                          .toLowerCase()
+                          .includes(search.toLowerCase())
                       ).length / itemsPerPage
                     ) == currentPage
-                      ? NewsData?.news.filter(
-                          (news) =>
-                            news.title
-                              .toLowerCase()
-                              .includes(search.toLowerCase())
+                      ? datas.filter((element) =>
+                          element.name
+                            .toLowerCase()
+                            .includes(search.toLowerCase())
                         ).length
                       : indexOfLastItem}
                   </span>{" "}
                   of{" "}
                   <span className="font-medium">
-                    {NewsData?.news.filter(
-                      (news) =>
-                        news.title
-                          .toLowerCase()
-                          .includes(search.toLowerCase())
+                    {datas.filter((element) =>
+                      element.name.toLowerCase().includes(search.toLowerCase())
                     ).length + " "}
                   </span>
                   results
@@ -153,9 +152,8 @@ export default function News(){
               <Pagination
                 itemsPerPage={itemsPerPage}
                 totalItems={
-                  NewsData?.news.filter(
-                    (news) =>
-                      news.title.toLowerCase().includes(search.toLowerCase())
+                  datas.filter((element) =>
+                    element.name.toLowerCase().includes(search.toLowerCase())
                   ).length
                 }
                 paginate={paginate}

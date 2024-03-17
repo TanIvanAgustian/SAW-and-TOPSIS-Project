@@ -2,7 +2,7 @@ import { gql, useMutation, useQuery, useSubscription } from "@apollo/client";
 
 const getUsers = gql`
   subscription MySubscription {
-    users (order_by: {created_at: asc}){
+    users (order_by: {created_at: desc}){
       image
       email
       name

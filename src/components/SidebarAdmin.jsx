@@ -147,6 +147,15 @@ export default function SidebarAdmin() {
                 <span className="ms-3">News</span>
               </Link>
             </li>
+            <li>
+              <Link
+                to="/admin/rank"
+                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+              >
+                <PencilIcon className="w-5 h-5" />
+                <span className="ms-3">Rank</span>
+              </Link>
+            </li>
           </ul>
         </div>
       </aside>

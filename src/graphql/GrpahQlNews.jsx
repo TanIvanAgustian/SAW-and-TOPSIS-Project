@@ -2,7 +2,7 @@ import { gql, useMutation, useSubscription } from "@apollo/client";
 
 const getAllNews = gql`
 subscription MySubscription {
-  news(order_by: {created_at: asc}) {
+  news(order_by: {created_at: desc}) {
       id
       title
       content
@@ -14,7 +14,7 @@ subscription MySubscription {
 
 export function GraphQlNews(){
     const {data,loading,error} = useSubscription(getAllNews);
-    return {data,loading,error};
+    return {NewsData:data, loadingNews:loading, errorNews:error};
 }
 
 const deleteNewsById = gql`

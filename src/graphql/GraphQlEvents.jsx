@@ -2,7 +2,7 @@ import { gql, useMutation, useQuery, useSubscription } from "@apollo/client";
 
 const getAllEvents = gql`
 subscription MySubscription {
-  events(order_by: {created_at: asc}) {
+  events(order_by: {created_at: desc}) {
       content
       documentation
       header_image

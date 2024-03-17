@@ -6,9 +6,12 @@ import {
   Typography,
   Button,
 } from "@material-tailwind/react";
+import AOS from "aos";
 
 export default function CardList(props) {
   const { Title, koor, member } = props;
+
+  AOS.init({duration:400});
 
   let style = "";
   if (Title == "Badan Pengurus Harian") {
@@ -26,7 +29,7 @@ export default function CardList(props) {
       </h1>
       <div className={style}>
         {koor?.map((anggota) => (
-          <Card className="mt-6 w-auto mx-2 bg-indigo-700 rounded-2xl text-white pt-3 px-3 pb-[75px] ">
+          <Card className="mt-6 w-auto mx-2 bg-indigo-700 rounded-2xl text-white pt-3 px-3 pb-[75px]" data-aos="zoom-in-up">
             <CardHeader
               color="blue-gray"
               className="relative lg:w-[300px] lg:h-[300px] sm:h-[50px] sm:w-[50px] self-center rounded-full"
@@ -47,7 +50,9 @@ export default function CardList(props) {
             </CardBody>
             <CardFooter className="absolute bottom-0 border-t-2 border-white text-center left-1/2 transform -translate-x-1/2">
               <div className="sm:flex sm:items-center sm:justify-between">
+                {anggota.twitter || anggota.facebook || anggota.instagram ? 
                 <ul className="flex gap-6">
+                  {anggota.facebook ? 
                   <li>
                     <a
                       href={anggota.facebook}
@@ -70,8 +75,9 @@ export default function CardList(props) {
                         />
                       </svg>
                     </a>
-                  </li>
+                  </li> : null}
 
+                  {anggota.instagram ? 
                   <li>
                     <a
                       href={anggota.instagram}
@@ -94,8 +100,9 @@ export default function CardList(props) {
                         />
                       </svg>
                     </a>
-                  </li>
+                  </li> : null }
 
+                  {anggota.twitter ? 
                   <li>
                     <a
                       href={anggota.twitter}
@@ -115,7 +122,8 @@ export default function CardList(props) {
                       </svg>
                     </a>
                   </li>
-                </ul>
+                  : null}
+                </ul>: <p className="text-sm text-gray-400">No Media Social</p>}
               </div>
             </CardFooter>
           </Card>
@@ -128,10 +136,10 @@ export default function CardList(props) {
         }
       >
         {member?.map((anggota) => (
-          <Card className="mt-6 w-[275px] mx-1 bg-indigo-700 rounded-2xl text-white pt-3 pb-[75px]">
+          <Card className="group mt-6 w-[275px] mx-1 bg-indigo-700 rounded-2xl text-white pt-3 pb-[75px]" data-aos="zoom-in-up">
             <CardHeader
               color="blue-gray"
-              className="relative w-[200px] h-[200px] m-1 self-center rounded-full"
+              className="relative w-[200px] h-[200px] m-1 self-center rounded-full group-hover:animate-bigger-slowly"
             >
               <img
                 className="bg-transparent aspect-square object-cover"
@@ -149,10 +157,12 @@ export default function CardList(props) {
             </CardBody>
             <CardFooter className="absolute bottom-0 border-t-2 border-white text-center left-1/2 transform -translate-x-1/2">
               <div className="sm:flex sm:items-center sm:justify-between">
+                {anggota.twitter || anggota.facebook || anggota.instagram ? 
                 <ul className="flex gap-6">
+                  {anggota.facebook ? 
                   <li>
                     <a
-                      href="#"
+                      href={anggota.facebook}
                       rel="noreferrer"
                       target="_blank"
                       className="text-white transition hover:opacity-75"
@@ -172,11 +182,12 @@ export default function CardList(props) {
                         />
                       </svg>
                     </a>
-                  </li>
+                  </li> : null}
 
+                  {anggota.instagram ? 
                   <li>
                     <a
-                      href="#"
+                      href={anggota.instagram}
                       rel="noreferrer"
                       target="_blank"
                       className="text-white transition hover:opacity-75"
@@ -196,11 +207,12 @@ export default function CardList(props) {
                         />
                       </svg>
                     </a>
-                  </li>
+                  </li> : null }
 
+                  {anggota.twitter ? 
                   <li>
                     <a
-                      href="#"
+                      href={anggota.twitter}
                       rel="noreferrer"
                       target="_blank"
                       className="text-white transition hover:opacity-75"
@@ -217,7 +229,8 @@ export default function CardList(props) {
                       </svg>
                     </a>
                   </li>
-                </ul>
+                  : null}
+                </ul>: <p className="text-sm text-gray-400">No Media Social</p>}
               </div>
             </CardFooter>
           </Card>
