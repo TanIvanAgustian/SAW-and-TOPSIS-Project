@@ -4,8 +4,15 @@ import Loading from "../../../components/Loading";
 import { Link } from "react-router-dom";
 import { GetAllPeopleByPosition } from "../../../components/GetAllPeople";
 import Footers from "../../../components/Footer";
+import AOS from "aos";
+import { useEffect } from "react";
 
 export default function AboutUs() {
+
+  useEffect(() => {
+    AOS.init({ duration: 2000 });
+  });
+
   const {ketua,loading,error} = GetAllPeopleByPosition()
   const achievement = [
     "Peraih Juara III Lomba Paduan Suara Konsumen Cerdas Disperindag Jawa Tengah",
@@ -22,7 +29,7 @@ export default function AboutUs() {
 
   return (
     <div className="bg-blue-800">
-      <div className="absolute h-[400px] w-full text-white bg-kaken bg-no-repeat bg-cover bg-scroll">
+      <div className="absolute h-[400px] w-full text-white bg-headerAboutUs bg-no-repeat bg-cover bg-scroll">
         <div className="bg-blue-600/40 h-full">
           <div className="flex justify-center p-2 font-bold">
             <h1 className="text-4xl uppercase font-black mt-44 font-serif"> About US </h1>
@@ -51,7 +58,7 @@ export default function AboutUs() {
                   alt="new"
                 />
                 <div className="w-8/12">
-                  <div className="mb-8">
+                  <div className="mb-8" data-aos="zoom-in-up">
                     <h4 className="text-lg font-semibold mb-2">Visi:</h4>
                     <p>
                       Menjadikan Paduan Suara Gita Dian Nuswa sebagai wadah
@@ -61,7 +68,7 @@ export default function AboutUs() {
                       lingkungan kampus dan eksternal.
                     </p>
                   </div>
-                  <div>
+                  <div data-aos="zoom-in-up">
                     <h4 className="text-lg font-semibold mb-2">Misi:</h4>
                     <ul className="list-disc pl-6 ">
                       <li>
@@ -78,7 +85,7 @@ export default function AboutUs() {
                     </ul>
                     <Link
                       to="/about us/anggota"
-                      className="mt-3 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                      className="mt-3 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 hover:animate-bigger-slowly"
                     >
                       Kabinet Kepengurusan
                       <svg
@@ -101,7 +108,7 @@ export default function AboutUs() {
                 </div>
               </div>
 
-              <div class="inline-flex items-center justify-center w-full">
+              <div class="inline-flex items-center justify-center w-full" data-aos="zoom-in-up">
                 <hr class="w-64 h-1 my-8 bg-gray-900 border-0 rounded dark:bg-gray-700" />
                 <div class="absolute px-4 -translate-x-1/2 bg-white left-1/2 dark:bg-gray-900">
                   <svg
@@ -116,10 +123,10 @@ export default function AboutUs() {
                 </div>
               </div>
 
-              <h1 className="font-extrabold text-xl capitalize">
+              <h1 className="font-extrabold text-xl capitalize" data-aos="zoom-in-up">
                 Sejarah Gita Dian Nuswa
               </h1>
-              <p className="my-3 text-justify">
+              <p className="my-3 text-justify" data-aos="zoom-in-up">
                 Paduan Suara Mahasiswa Universitas Dian Nuswantoro berdiri pada
                 tanggal 1 Desember 1995. Pembina pertama UKM Paduan Suara
                 Mahasiswa Udinus adalah DR Yohan Wismantoro SE, MM, yang
@@ -132,7 +139,7 @@ export default function AboutUs() {
                 Lenni Yovita S.E., M.Si
               </p>
 
-              <div class="inline-flex items-center justify-center w-full">
+              <div class="inline-flex items-center justify-center w-full" data-aos="zoom-in-up">
                 <hr class="w-64 h-1 my-8 bg-gray-900 border-0 rounded dark:bg-gray-700" />
                 <div class="absolute px-4 -translate-x-1/2 bg-white left-1/2 dark:bg-gray-900">
                   <svg
@@ -147,12 +154,12 @@ export default function AboutUs() {
                 </div>
               </div>
 
-              <h1 className="font-extrabold text-xl capitalize mt-3">
+              <h1 className="font-extrabold text-xl capitalize mt-3" data-aos="zoom-in-up">
                 Prestasi Gita Dian Nuswa
               </h1>
               <ol class="list-decimal my-3 list-inside">
                 {achievement.map((prestasi) => (
-                  <li className="mb-1">{prestasi}</li>
+                  <li className="mb-1" data-aos="zoom-in-up">{prestasi}</li>
                 ))}
               </ol>
             </div>

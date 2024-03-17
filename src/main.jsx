@@ -28,6 +28,11 @@ import EditEvents from "./layout/admin/events/EditEvent";
 import News from "./layout/admin/news";
 import AddNews from "./layout/admin/news/AddNews";
 import EditNews from "./layout/admin/news/EditNews";
+import Programs from "./layout/user/program";
+import DetailPrograms from "./layout/user/program/detailProgram";
+import RankData from "./layout/admin/rank";
+import AddRank from "./layout/admin/rank/AddRank";
+import EditRank from "./layout/admin/rank/EditRank";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -35,8 +40,13 @@ const router = createBrowserRouter(
       <Route element={<LoggedIn />}>
         <Route element={<Root />}>
           <Route path="/" element={<Dashboard />} />
+
           <Route path="/about us" element={<AboutUs />} />
           <Route path="/about us/anggota" element={<ListAnggota />} />
+
+          <Route path="/Programs/:ProgramType" element={<Programs />} />
+          <Route path="/programs/content/:id" element={<DetailPrograms />} />
+          
         </Route>
         <Route path="/login" element={<Login />} />
       </Route>
@@ -53,6 +63,10 @@ const router = createBrowserRouter(
           <Route path="/admin/news" element={<News />} />
           <Route path="/admin/news/addnews" element={<AddNews />} />
           <Route path="/admin/news/editnews/:id" element={<EditNews />} />
+
+          <Route path="/admin/rank" element={<RankData />} />
+          <Route path="/admin/rank/addrank" element={<AddRank/>} />
+          <Route path="/admin/rank/editrank/:id" element={<EditRank/>} />
         </Route>
       </Route>
       <Route path="*" element={<NotFound />} />

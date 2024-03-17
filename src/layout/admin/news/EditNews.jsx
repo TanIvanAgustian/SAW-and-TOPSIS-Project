@@ -7,6 +7,7 @@ import Alert from "../../../components/Alert";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import WYSIWYG from "../../../components/WYSIWYG";
+import Loading from "../../../components/Loading";
 
 export default function EditNews() {
   const [isAlert, setIsAlert] = useState(false);
@@ -14,15 +15,15 @@ export default function EditNews() {
   const [variant, setVariant] = useState("");
 
   const { id } = useParams();
-  const { data, loading, error } = GraphQlNews();
+  const { NewsData, loadingNews, errorNews } = GraphQlNews();
   const { UpdateNews, LoadingUpdate, ErrorUpdate } = GraphQLUpdateNewsById();
   const navigate = useNavigate();
   const [images, setImages] = useState("");
 const [url, setUrl] = useState("");
 
   useEffect(() => {
-    if (data) {
-      const news = data?.news.find((element) => element.id == id);
+    if (NewsData) {
+      const news = NewsData?.news.find((element) => element.id == id);
       const dataInialisasi = {
         image: news.image,
         title: news.title,
@@ -32,8 +33,8 @@ const [url, setUrl] = useState("");
       setUrl(news.image);
       setImages(news.image);
     }
-  }, [data]);
-  if (error) return <ErrorPage />;
+  }, [NewsData]);
+  if (errorNews) return <ErrorPage />;
 
   const openAlert = (variant, message) => {
     setIsAlert(true);
@@ -127,6 +128,8 @@ const [url, setUrl] = useState("");
 
   return (
     <form onSubmit={formik.handleSubmit}>
+      {loadingNews ? <Loading/> :
+      <div>
       <div className="relative">
         {images ? (
           <div className="relative w-full h-[fit] my-6">
@@ -242,7 +245,7 @@ const [url, setUrl] = useState("");
       <div className="flex w-full mt-6 justify-end ">
         {/*Submit button*/}
         <div className="text-center">
-          {loading ? (
+          {LoadingUpdate ? (
             <button
               id="btn_add_product"
               className="text-p3 ms-3 mb-3 w-fit px-6 inline-block bg-blue-700 rounded-full py-2 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_rgba(0,0,0,0.2)] transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:outline-none focus:ring-0 active:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] disabled:bg-blue-400"
@@ -279,7 +282,7 @@ const [url, setUrl] = useState("");
             </a>
           )}
         </div>
-      </div>
+      </div> </div> }
       {isAlert && (
         <Alert variant={variant} message={message} onClose={closeAlert} />
       )}

@@ -10,8 +10,8 @@ import WYSIWYG from "../../../components/WYSIWYG";
 export default function AddEvents() {
   const jenisProgram = [
     "Concert",
-    "CHA",
-    "NCC",
+    "Choir Humanity Action",
+    "Newcomers Concert",
     "Goes To School",
     "Competition",
   ];

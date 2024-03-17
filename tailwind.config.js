@@ -10,7 +10,11 @@ export default withMT({
   theme: {
     backgroundImage: {
       'backgroundlogin': "url('/src/assets/padus.jpg')",
-      'kaken':"url('/src/assets/kaken.jpeg')",
+      'headerAboutUs':"url('/src/assets/Header-Image-Aboutus.jpeg')",
+      'headerProgram':"url('/src/assets/Header-Image-Program.jpg')",
+      'headerNews':"url('/src/assets/Header-Image-News.jpg')",
+      'headerVideo':"url('/src/assets/Header-Image-Video.jpg')",
+      
     },
     screens: {
       'sm': '640px',
@@ -31,7 +35,11 @@ export default withMT({
           '60%': { transform: 'rotate(0.0deg)' },
           '100%': { transform: 'rotate(0.0deg)' },
         },
-        bigger: {
+        bigger1: {
+          from: { transform: "scale(1)" },
+          to: { transform: "scale(1.1)" },
+        },
+        bigger2: {
           from: { transform: "scale(1)" },
           to: { transform: "scale(1.2)" },
         },
@@ -39,11 +47,18 @@ export default withMT({
           from: { opacity: "0" },
           to: { opacity: "1" },
         },
+        bounceright: {
+          "0%": {transform: 'translateX(0px)'},
+          "50%": {transform: 'translateX(-4px)'},
+          "100%": {transform: 'translateX(0px)'},
+        }
       },
       animation: {
         'fast-waving': 'wave 1s linear forwards',
-        'bigger': 'bigger 0.1s linear forwards',
-        "clearly": 'clearly 0.2s linear forwards',
+        'bigger': 'bigger2 0.1s linear forwards',
+        'bigger-slowly': 'bigger1 0.5s linear forwards',
+        'clearly': 'clearly 0.2s linear forwards',
+        'bounce-right': 'bounceright 0.5s linear infinite'
       },
     }
   },
