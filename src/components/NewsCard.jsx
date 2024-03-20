@@ -5,14 +5,14 @@ import dayjs from "dayjs";
 
 export default function NewsCard({ data }) {
   return (
-    <div className="p-3 grid grid-cols-1 w-full">
+    <div className="p-3 grid grid-cols-1 w-full gap-3">
       {data.map((item) => (
         <div className="w-full lg:max-w-full lg:flex shadow-lg">
           <img
-            className="h-48 lg:h-auto lg:w-80 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden"
+            className="h-48 lg:h-64 lg:w-80 flex-none object-cover object-center rounded-t mx-auto lg:rounded-t-none lg:rounded-l text-center overflow-hidden"
             src={item.image}
             alt="Gagal Load"
-          ></img>
+          />
           <div className="w-full border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
             <div className="mb-3">
               <p className="text-sm text-gray-600 flex items-center">

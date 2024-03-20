@@ -8,6 +8,8 @@ import Pagination from "../../../components/Pagination";
 import { PencilIcon, TrashIcon, PlusIcon } from "@heroicons/react/24/solid";
 import Loading from "../../../components/Loading";
 import { Link } from "react-router-dom";
+import Alert from "../../../components/Alert";
+import ModalConfirm from "../../../components/ModalConfirm";
 
 export default function UsersData() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -24,17 +26,50 @@ export default function UsersData() {
   // Change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-  const handleDelete = (idx) => {
-    console.log(idx);
-    DeleteUsers({
+  const [isAlert, setIsAlert] = useState(false);
+  const [message, setMessage] = useState("");
+  const [variant, setVariant] = useState("");
+
+  const openAlert = (variant, message) => {
+    setIsAlert(true);
+    setVariant(variant);
+    setMessage(message);
+    setTimeout(closeAlert, 2500);
+  };
+  const closeAlert = () => {
+    setIsAlert(false);
+    setVariant("");
+    setMessage("");
+  };
+
+  const [deleteModalId, setDeleteModalId] = useState(null);
+  const [deleteModalName, setDeleteModalName] = useState(null);
+
+  const openDeleteModal = (id, name) => {
+    setDeleteModalId(id);
+    setDeleteModalName(name);
+  };
+
+  const closeDeleteModal = () => {
+    setDeleteModalId(null);
+    setDeleteModalName(null);
+  };
+
+  const handleDelete = async (idx) => {
+    await DeleteUsers({
       variables: {
         id: idx,
       },
     });
+    openAlert("success", "User Berhasil Dihapus");
+    closeDeleteModal();
   };
 
   return (
     <div>
+      {isAlert && (
+        <Alert variant={variant} message={message} onClose={closeAlert} />
+      )}
       <h2 class="text-4xl font-bold dark:text-white mb-6 ms-6">List Anggota</h2>
       {loading && LoadingDelete ? (
         <Loading />
@@ -118,7 +153,9 @@ export default function UsersData() {
                           <button
                             type="button"
                             class="text-red-700 border-1 border-red-700 hover:bg-red-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:focus:ring-red-800 dark:hover:bg-red-500"
-                            onClick={() => handleDelete(user.id)}
+                            onClick={() =>
+                              openDeleteModal(user.id, user.name)
+                            }
                           >
                             <TrashIcon className="w-4 h-4" />
                             <span class="sr-only">Delete</span>
@@ -184,6 +221,17 @@ export default function UsersData() {
             </div>
           </div>
         </div>
+      )}
+      {deleteModalId && (
+        <ModalConfirm
+          title="Hapus produk yang dipilih?"
+          description={`User dengan nama ${deleteModalName} yang dipilih akan dihapus secara permanen`}
+          labelCancel="Batal"
+          labelConfirm="Hapus"
+          variant="danger"
+          onCancel={closeDeleteModal}
+          onConfirm={() => handleDelete(deleteModalId)}
+        />
       )}
     </div>
   );

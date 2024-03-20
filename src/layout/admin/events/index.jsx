@@ -1,18 +1,24 @@
 import { useEffect, useState } from "react";
 import Search from "../../../components/Search";
-import { GraphQlEvents, GraphQlDeleteEventsById } from "../../../graphql/GraphQlEvents";
+import {
+  GraphQlEvents,
+  GraphQlDeleteEventsById,
+} from "../../../graphql/GraphQlEvents";
 import Pagination from "../../../components/Pagination";
 import { PencilIcon, TrashIcon, PlusIcon } from "@heroicons/react/24/solid";
 import Loading from "../../../components/Loading";
 import { Link } from "react-router-dom";
 import dayjs from "dayjs";
+import ModalConfirm from "../../../components/ModalConfirm";
+import Alert from "../../../components/Alert";
 
-export default function Events(){
+export default function Events() {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(5);
 
   const { data, loading, error } = GraphQlEvents();
-  const { DeleteEvents, LoadingDelete, ErrorDelete } = GraphQlDeleteEventsById()
+  const { DeleteEvents, LoadingDelete, ErrorDelete } =
+    GraphQlDeleteEventsById();
 
   const [search, setSearch] = useState("");
 
@@ -22,16 +28,50 @@ export default function Events(){
   // Change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-  const handleDelete = (idx) => {
-    DeleteEvents({
+  const [isAlert, setIsAlert] = useState(false);
+  const [message, setMessage] = useState("");
+  const [variant, setVariant] = useState("");
+
+  const openAlert = (variant, message) => {
+    setIsAlert(true);
+    setVariant(variant);
+    setMessage(message);
+    setTimeout(closeAlert, 2500);
+  };
+  const closeAlert = () => {
+    setIsAlert(false);
+    setVariant("");
+    setMessage("");
+  };
+
+  const [deleteModalId, setDeleteModalId] = useState(null);
+  const [deleteModalTitle, setDeleteModalTitle] = useState(null);
+
+  const openDeleteModal = (id, title) => {
+    setDeleteModalId(id);
+    setDeleteModalTitle(title);
+  };
+
+  const closeDeleteModal = () => {
+    setDeleteModalId(null);
+    setDeleteModalTitle(null);
+  };
+
+  const handleDelete = async (idx) => {
+    await DeleteEvents({
       variables: {
         id: idx,
       },
     });
+    openAlert("success", "Item Berhasil Dihapus");
+    closeDeleteModal();
   };
 
   return (
     <div>
+      {isAlert && (
+        <Alert variant={variant} message={message} onClose={closeAlert} />
+      )}
       <h2 class="text-4xl font-bold dark:text-white mb-6 ms-6">List Event</h2>
       {loading && LoadingDelete ? (
         <Loading />
@@ -69,9 +109,8 @@ export default function Events(){
               </thead>
               <tbody className="text-sm">
                 {data?.events
-                  .filter(
-                    (event) =>
-                      event.title.toLowerCase().includes(search.toLowerCase())
+                  .filter((event) =>
+                    event.title.toLowerCase().includes(search.toLowerCase())
                   )
                   .slice(indexOfFirstItem, indexOfLastItem)
                   .map((event, index) => (
@@ -91,14 +130,14 @@ export default function Events(){
                         {event.program_name}
                       </td>
                       <td className="border px-4 py-2 min-w-[180px]">
-                        {dayjs(event.start_date).format('MMM D, YYYY H:mm A')}
+                        {dayjs(event.start_date).format("MMM D, YYYY H:mm A")}
                       </td>
                       <td className="border px-4 py-2 min-w-[150px]">
                         <div className="flex w-full justify-around">
                           <Link
                             type="button"
                             class="text-green-700 border-1 border-green-700 hover:bg-green-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center dark:border-green-500 dark:text-green-500 dark:hover:text-white dark:focus:ring-green-800 dark:hover:bg-green-500"
-                            to={"./editevent/"+event.id}
+                            to={"./editevent/" + event.id}
                           >
                             <PencilIcon className="w-4 h-4" />
                             <span class="sr-only">Edit</span>
@@ -106,7 +145,9 @@ export default function Events(){
                           <button
                             type="button"
                             class="text-red-700 border-1 border-red-700 hover:bg-red-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:focus:ring-red-800 dark:hover:bg-red-500"
-                            onClick={() => handleDelete(event.id)}
+                            onClick={() =>
+                              openDeleteModal(event.id, event.title)
+                            }
                           >
                             <TrashIcon className="w-4 h-4" />
                             <span class="sr-only">Delete</span>
@@ -127,28 +168,21 @@ export default function Events(){
                   <span className="font-medium">{indexOfFirstItem}</span> to{" "}
                   <span className="font-medium">
                     {Math.ceil(
-                      data?.events.filter(
-                        (event) =>
+                      data?.events.filter((event) =>
+                        event.title.toLowerCase().includes(search.toLowerCase())
+                      ).length / itemsPerPage
+                    ) == currentPage
+                      ? data?.events.filter((event) =>
                           event.title
                             .toLowerCase()
                             .includes(search.toLowerCase())
-                      ).length / itemsPerPage
-                    ) == currentPage
-                      ? data?.events.filter(
-                          (event) =>
-                            event.title
-                              .toLowerCase()
-                              .includes(search.toLowerCase())
                         ).length
                       : indexOfLastItem}
                   </span>{" "}
                   of{" "}
                   <span className="font-medium">
-                    {data?.events.filter(
-                      (event) =>
-                        event.title
-                          .toLowerCase()
-                          .includes(search.toLowerCase())
+                    {data?.events.filter((event) =>
+                      event.title.toLowerCase().includes(search.toLowerCase())
                     ).length + " "}
                   </span>
                   results
@@ -157,9 +191,8 @@ export default function Events(){
               <Pagination
                 itemsPerPage={itemsPerPage}
                 totalItems={
-                  data?.events.filter(
-                    (event) =>
-                      event.title.toLowerCase().includes(search.toLowerCase())
+                  data?.events.filter((event) =>
+                    event.title.toLowerCase().includes(search.toLowerCase())
                   ).length
                 }
                 paginate={paginate}
@@ -168,6 +201,17 @@ export default function Events(){
             </div>
           </div>
         </div>
+      )}
+      {deleteModalId && (
+        <ModalConfirm
+          title="Hapus produk yang dipilih?"
+          description={`Program dengan judul ${deleteModalTitle} yang dipilih akan dihapus secara permanen`}
+          labelCancel="Batal"
+          labelConfirm="Hapus"
+          variant="danger"
+          onCancel={closeDeleteModal}
+          onConfirm={() => handleDelete(deleteModalId)}
+        />
       )}
     </div>
   );

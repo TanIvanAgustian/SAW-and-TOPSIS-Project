@@ -6,6 +6,8 @@ import { PencilIcon, TrashIcon, PlusIcon } from "@heroicons/react/24/solid";
 import Loading from "../../../components/Loading";
 import { Link } from "react-router-dom";
 import dayjs from "dayjs";
+import Alert from "../../../components/Alert";
+import ModalConfirm from "../../../components/ModalConfirm";
 
 export default function News(){
   const [currentPage, setCurrentPage] = useState(1);
@@ -22,16 +24,51 @@ export default function News(){
   // Change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-  const handleDelete = (idx) => {
-    DeleteNews({
+  const [isAlert, setIsAlert] = useState(false);
+  const [message, setMessage] = useState("");
+  const [variant, setVariant] = useState("");
+
+  const openAlert = (variant, message) => {
+    setIsAlert(true);
+    setVariant(variant);
+    setMessage(message);
+    setTimeout(closeAlert, 2500);
+  };
+  const closeAlert = () => {
+    setIsAlert(false);
+    setVariant("");
+    setMessage("");
+  };
+
+  const [deleteModalId, setDeleteModalId] = useState(null);
+  const [deleteModalTitle, setDeleteModalTitle] = useState(null);
+
+  const openDeleteModal = (id, title) => {
+    setDeleteModalId(id);
+    setDeleteModalTitle(title);
+  };
+
+  const closeDeleteModal = () => {
+    setDeleteModalId(null);
+    setDeleteModalTitle(null);
+  };
+
+  const handleDelete = async (idx) => {
+    await DeleteNews({
       variables: {
         id: idx,
       },
     });
+    openAlert("success", "Item Berhasil Dihapus");
+    closeDeleteModal();
   };
+
 
   return (
     <div>
+      {isAlert && (
+        <Alert variant={variant} message={message} onClose={closeAlert} />
+      )}
       <h2 class="text-4xl font-bold dark:text-white mb-6 ms-6">List News</h2>
       {loadingNews && LoadingDelete ? (
         <Loading />
@@ -102,7 +139,9 @@ export default function News(){
                           <button
                             type="button"
                             class="text-red-700 border-1 border-red-700 hover:bg-red-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:focus:ring-red-800 dark:hover:bg-red-500"
-                            onClick={() => handleDelete(news.id)}
+                            onClick={() =>
+                              openDeleteModal(news.id, news.title)
+                            }
                           >
                             <TrashIcon className="w-4 h-4" />
                             <span class="sr-only">Delete</span>
@@ -164,6 +203,17 @@ export default function News(){
             </div>
           </div>
         </div>
+      )}
+      {deleteModalId && (
+        <ModalConfirm
+          title="Hapus produk yang dipilih?"
+          description={`Berita dengan judul ${deleteModalTitle} yang dipilih akan dihapus secara permanen`}
+          labelCancel="Batal"
+          labelConfirm="Hapus"
+          variant="danger"
+          onCancel={closeDeleteModal}
+          onConfirm={() => handleDelete(deleteModalId)}
+        />
       )}
     </div>
   );
