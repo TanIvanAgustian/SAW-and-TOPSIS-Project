@@ -33,6 +33,8 @@ import DetailPrograms from "./layout/user/program/detailProgram";
 import RankData from "./layout/admin/rank";
 import AddRank from "./layout/admin/rank/AddRank";
 import EditRank from "./layout/admin/rank/EditRank";
+import NewsDisplay from "./layout/user/news";
+import NewsDetail from "./layout/user/news/NewsDetail";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -46,6 +48,9 @@ const router = createBrowserRouter(
 
           <Route path="/Programs/:ProgramType" element={<Programs />} />
           <Route path="/programs/content/:id" element={<DetailPrograms />} />
+
+          <Route path="/news" element={<NewsDisplay />} />
+          <Route path="/news/:id" element={<NewsDetail />} />
           
         </Route>
         <Route path="/login" element={<Login />} />

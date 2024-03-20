@@ -9,7 +9,7 @@ export default withMT({
   ],
   theme: {
     backgroundImage: {
-      'backgroundlogin': "url('/src/assets/padus.jpg')",
+      'backgroundlogin': "url('/src/assets/logo_PSM.png')",
       'headerAboutUs':"url('/src/assets/Header-Image-Aboutus.jpeg')",
       'headerProgram':"url('/src/assets/Header-Image-Program.jpg')",
       'headerNews':"url('/src/assets/Header-Image-News.jpg')",

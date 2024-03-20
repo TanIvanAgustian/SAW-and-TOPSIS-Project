@@ -167,12 +167,12 @@ export default function Navbar() {
               </Transition>
             </Popover>
 
-            <a
-              href="#"
+            <Link
+              to="news"
               className="hover:animate-bigger text-sm font-semibold leading-6 text-amber-50 px-2 rounded hover:bg-white"
             >
               News
-            </a>
+            </Link>
             <a
               href="#"
               className="hover:animate-bigger text-sm font-semibold leading-6 text-amber-50 px-2 rounded hover:bg-white"
@@ -251,12 +251,12 @@ export default function Navbar() {
                     </>
                   )}
                 </Disclosure>
-                <a
-                  href="#"
+                <Link
+                  to="/news"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-amber-50 hover:bg-gray-50"
                 >
                   News
-                </a>
+                </Link>
                 <a
                   href="#"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-amber-50 hover:bg-gray-50"

@@ -225,7 +225,7 @@ export default function Dashboard() {
           Recent News :
         </h1>
         <div className="w-full" data-aos="zoom-in-up">
-          {loadingNews ? <Loading /> : <NewsCard data={NewsData?.news} />}
+          {loadingNews ? <Loading /> : <NewsCard data={NewsData?.news.slice(0, 3)} />}
         </div>
       </div>
       <Footers />

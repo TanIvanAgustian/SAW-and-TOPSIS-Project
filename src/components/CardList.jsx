@@ -46,6 +46,7 @@ export default function CardList(props) {
               </Typography>
               <Typography>
                   <div className="font-sans capitalize"> {anggota.position}</div>
+                  <div className="font-sans">{anggota.voice_type} ({anggota.angkatan})</div>
               </Typography>
             </CardBody>
             <CardFooter className="absolute bottom-0 border-t-2 border-white text-center left-1/2 transform -translate-x-1/2">
@@ -152,7 +153,8 @@ export default function CardList(props) {
                 {anggota.name}
               </Typography>
               <Typography>
-                <div className="font-sans">Devisi {anggota.position}</div>
+                <div className="font-sans">{anggota.position}</div>
+                <div className="font-sans">{anggota.voice_type} ({anggota.angkatan})</div>
               </Typography>
             </CardBody>
             <CardFooter className="absolute bottom-0 border-t-2 border-white text-center left-1/2 transform -translate-x-1/2">
