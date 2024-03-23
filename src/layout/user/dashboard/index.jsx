@@ -1,6 +1,5 @@
 "use client";
 
-import DisclosureItems from "../../../components/Disclosure";
 import CarouselItems from "../../../components/Carousel";
 import Footers from "../../../components/Footer";
 import Background from "../../../assets/background.mp4";

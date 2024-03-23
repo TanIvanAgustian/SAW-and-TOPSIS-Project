@@ -10,7 +10,7 @@ import Loading from "../../../components/Loading";
 import { Link } from "react-router-dom";
 import Alert from "../../../components/Alert";
 import ModalConfirm from "../../../components/ModalConfirm";
-import ItemNotFound from "../../../components/itemNotFound";
+import ItemNotFound from "../../../components/ItemNotFound";
 
 export default function UsersData() {
   const [currentPage, setCurrentPage] = useState(1);

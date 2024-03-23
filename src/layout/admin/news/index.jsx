@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 import dayjs from "dayjs";
 import Alert from "../../../components/Alert";
 import ModalConfirm from "../../../components/ModalConfirm";
-import ItemNotFound from "../../../components/itemNotFound";
+import ItemNotFound from "../../../components/ItemNotFound";
 
 export default function News() {
   const [currentPage, setCurrentPage] = useState(1);
