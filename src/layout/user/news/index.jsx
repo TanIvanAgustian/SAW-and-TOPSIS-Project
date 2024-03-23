@@ -6,13 +6,13 @@ import Loading from "../../../components/Loading";
 import Search from "../../../components/Search";
 import Pagination from "../../../components/Pagination";
 import { useState } from "react";
+import ItemNotFound from "../../../components/itemNotFound";
 
 export default function NewsDisplay() {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(5);
 
   const [search, setSearch] = useState("");
-  const [isOpen, setIsOpen] = useState(false);
 
   const { NewsData, loadingNews, errorNews } = GraphQlNews();
 
@@ -24,7 +24,7 @@ export default function NewsDisplay() {
 
   return (
     <div className="bg-blue-800">
-      <div className="absolute h-[400px] w-full text-white bg-headerAboutUs bg-no-repeat bg-cover bg-scroll">
+      <div className="absolute h-[400px] w-full text-white bg-headerNews bg-no-repeat bg-cover bg-scroll">
         <div className="bg-blue-600/40 h-full">
           <div className="flex justify-center p-2 font-bold">
             <h1 className="text-4xl uppercase font-black mt-44 font-serif">
@@ -56,7 +56,9 @@ export default function NewsDisplay() {
           />
           {loadingNews ? (
             <Loading />
-          ) : (
+          ) : NewsData?.news.filter((element) =>
+              element.title.toLowerCase().includes(search.toLowerCase())
+            ).length > 0 ? (
             <NewsCard
               data={NewsData?.news
                 .filter((element) =>
@@ -64,6 +66,8 @@ export default function NewsDisplay() {
                 )
                 .slice(indexOfFirstItem, indexOfLastItem)}
             />
+          ) : (
+            <ItemNotFound />
           )}
 
           <div className="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">

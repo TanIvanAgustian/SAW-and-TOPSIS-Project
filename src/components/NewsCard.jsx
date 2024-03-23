@@ -2,12 +2,15 @@ import React from "react";
 import { Link } from "react-router-dom";
 import CHA from "../assets/CHA.png";
 import dayjs from "dayjs";
+import AOS from "aos";
 
 export default function NewsCard({ data }) {
+  AOS.init({duration:1000})
+
   return (
     <div className="p-3 grid grid-cols-1 w-full gap-3">
       {data.map((item) => (
-        <div className="w-full lg:max-w-full lg:flex shadow-lg">
+        <div className="w-full lg:max-w-full lg:flex shadow-lg" data-aos="zoom-in-up">
           <img
             className="h-48 lg:h-64 lg:w-80 flex-none object-cover object-center rounded-t mx-auto lg:rounded-t-none lg:rounded-l text-center overflow-hidden"
             src={item.image}

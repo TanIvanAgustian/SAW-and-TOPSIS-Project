@@ -6,14 +6,14 @@ import { GetAllPeopleByPosition } from "../../../components/GetAllPeople";
 import Footers from "../../../components/Footer";
 import AOS from "aos";
 import { useEffect } from "react";
+import Logo from "../../../assets/logo_PSM.png"
 
 export default function AboutUs() {
-
   useEffect(() => {
-    AOS.init({ duration: 2000 });
+    AOS.init({ duration: 1000 });
   });
 
-  const {ketua,loading,error} = GetAllPeopleByPosition()
+  const { ketua, loading, error } = GetAllPeopleByPosition();
   const achievement = [
     "Peraih Juara III Lomba Paduan Suara Konsumen Cerdas Disperindag Jawa Tengah",
     "Peraih Gold Medal di 1st Taipei International Choral Competition kategori “Folklore” tahun 2018",
@@ -32,7 +32,10 @@ export default function AboutUs() {
       <div className="absolute h-[400px] w-full text-white bg-headerAboutUs bg-no-repeat bg-cover bg-scroll">
         <div className="bg-blue-600/40 h-full">
           <div className="flex justify-center p-2 font-bold">
-            <h1 className="text-4xl uppercase font-black mt-44 font-serif"> About US </h1>
+            <h1 className="text-4xl uppercase font-black mt-44 font-serif">
+              {" "}
+              About US{" "}
+            </h1>
           </div>
           <div className="flex justify-center font-bold">
             <BreadCrumb items={["about us"]} />
@@ -41,14 +44,62 @@ export default function AboutUs() {
       </div>
       <div className="bg-blue-700 relative top-[400px] pt-16">
         <div className=" bg-white rounded mx-16 p-8 mb-16">
+          <div>
+            <div className="flex my-6 justify-around">
+              <div className="w-8/12">
+                <h1 className="font-black text-3xl text-center uppercase mb-3" data-aos="fade-right">
+                  gita dian nuswa
+                </h1>
+                <h1 className="font-extrabold text-xl capitalize" data-aos="fade-right">
+                  apa itu gita dian nuswa?
+                </h1>
+                <div className="mb-8" data-aos="fade-right">
+                  <p className="my-3 text-justify">
+                    Selain itu, Gita Dian Nuswa
+                    Choir juga aktif berpartisipasi dalam berbagai kompetisi
+                    paduan suara, baik tingkat lokal maupun nasional, sebagai
+                    wujud dari dedikasi mereka dalam meningkatkan kualitas
+                    musikalitas dan prestasi. Melalui latihan rutin, kerja
+                    keras, dan semangat kebersamaan, mereka terus menginspirasi
+                    dan menghibur dengan penampilan vokal yang memukau. Dengan
+                    visi untuk menjadi paduan suara yang berkualitas dan
+                    berprestasi, Gita Dian Nuswa Choir terus menjaga tradisi
+                    keunggulan dan memperkaya pengalaman seni musik vokal bagi
+                    anggotanya serta para penikmat musik.
+                  </p>
+                  <p className="my-3 text-justify">
+                    Gita Dian Nuswa Choir adalah sebuah paduan suara mahasiswa
+                    yang berasal dari Universitas Dian Nuswantoro (UDINUS).
+                    Mereka adalah kelompok vokal yang terdiri dari
+                    mahasiswa-mahasiswa yang memiliki minat dan bakat dalam
+                    menyanyi. Sebagai sebuah paduan suara, Gita Dian Nuswa
+                    memiliki fokus utama dalam mengembangkan kualitas vokal,
+                    harmonisasi, dan ekspresi musikal mereka. Sebagai bagian
+                    dari komunitas mahasiswa di Universitas Dian Nuswantoro,
+                    Gita Dian Nuswa Choir berperan penting dalam kegiatan seni
+                    dan budaya kampus. Mereka tidak hanya menjadi representasi
+                    dari bakat seni vokal mahasiswa, tetapi juga menjadi duta
+                    dalam mempromosikan keindahan musik vokal di lingkungan
+                    kampus maupun di luar kampus.
+                  </p>
+                </div>
+              </div>
+              <img
+                className="w-3/12 h-full filter drop-shadow-2xl place-self-center"
+                src={Logo}
+                alt="new"
+                data-aos="fade-right"
+              />
+            </div>
+          </div>
           {loading ? (
             <Loading />
           ) : (
             <div>
-              <h1 className="font-black text-3xl text-center capitalize mb-3">
-                {ketua[0].position}
+              <h1 className="font-black text-3xl text-center capitalize mb-3" data-aos="fade-left">
+                Profil Ketua
               </h1>
-              <h1 className="font-extrabold text-xl text-center capitalize">
+              <h1 className="font-extrabold text-xl text-center capitalize" data-aos="fade-left">
                 {ketua[0].name}
               </h1>
               <div className="flex my-6 justify-around">
@@ -56,9 +107,10 @@ export default function AboutUs() {
                   className="w-3/12 h-full rounded-full place-self-center"
                   src={ketua[0].image}
                   alt="new"
+                  data-aos="fade-left"
                 />
                 <div className="w-8/12">
-                  <div className="mb-8" data-aos="zoom-in-up">
+                  <div className="mb-8" data-aos="fade-left">
                     <h4 className="text-lg font-semibold mb-2">Visi:</h4>
                     <p>
                       Menjadikan Paduan Suara Gita Dian Nuswa sebagai wadah
@@ -68,7 +120,7 @@ export default function AboutUs() {
                       lingkungan kampus dan eksternal.
                     </p>
                   </div>
-                  <div data-aos="zoom-in-up">
+                  <div data-aos="fade-left">
                     <h4 className="text-lg font-semibold mb-2">Misi:</h4>
                     <ul className="list-disc pl-6 ">
                       <li>
@@ -83,32 +135,14 @@ export default function AboutUs() {
                         Membangun budaya latihan yang lebih disiplin dan efektif
                       </li>
                     </ul>
-                    <Link
-                      to="/about us/anggota"
-                      className="mt-3 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 hover:animate-bigger-slowly"
-                    >
-                      Kabinet Kepengurusan
-                      <svg
-                        className="rtl:rotate-180 w-3.5 h-3.5 ms-2"
-                        aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 14 10"
-                      >
-                        <path
-                          stroke="currentColor"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="M1 5h12m0 0L9 1m4 4L9 9"
-                        />
-                      </svg>
-                    </Link>
                   </div>
                 </div>
               </div>
 
-              <div class="inline-flex items-center justify-center w-full" data-aos="zoom-in-up">
+              <div
+                class="inline-flex items-center justify-center w-full"
+                data-aos="zoom-in-up"
+              >
                 <hr class="w-64 h-1 my-8 bg-gray-900 border-0 rounded dark:bg-gray-700" />
                 <div class="absolute px-4 -translate-x-1/2 bg-white left-1/2 dark:bg-gray-900">
                   <svg
@@ -123,7 +157,10 @@ export default function AboutUs() {
                 </div>
               </div>
 
-              <h1 className="font-extrabold text-xl capitalize" data-aos="zoom-in-up">
+              <h1
+                className="font-extrabold text-xl capitalize"
+                data-aos="zoom-in-up"
+              >
                 Sejarah Gita Dian Nuswa
               </h1>
               <p className="my-3 text-justify" data-aos="zoom-in-up">
@@ -139,7 +176,10 @@ export default function AboutUs() {
                 Lenni Yovita S.E., M.Si
               </p>
 
-              <div class="inline-flex items-center justify-center w-full" data-aos="zoom-in-up">
+              <div
+                class="inline-flex items-center justify-center w-full"
+                data-aos="zoom-in-up"
+              >
                 <hr class="w-64 h-1 my-8 bg-gray-900 border-0 rounded dark:bg-gray-700" />
                 <div class="absolute px-4 -translate-x-1/2 bg-white left-1/2 dark:bg-gray-900">
                   <svg
@@ -154,18 +194,23 @@ export default function AboutUs() {
                 </div>
               </div>
 
-              <h1 className="font-extrabold text-xl capitalize mt-3" data-aos="zoom-in-up">
+              <h1
+                className="font-extrabold text-xl capitalize mt-3"
+                data-aos="zoom-in-up"
+              >
                 Prestasi Gita Dian Nuswa
               </h1>
               <ol class="list-decimal my-3 list-inside">
                 {achievement.map((prestasi) => (
-                  <li className="mb-1" data-aos="zoom-in-up">{prestasi}</li>
+                  <li className="mb-1" data-aos="zoom-in-up">
+                    {prestasi}
+                  </li>
                 ))}
               </ol>
             </div>
           )}
         </div>
-        <Footers/>
+        <Footers />
       </div>
     </div>
   );

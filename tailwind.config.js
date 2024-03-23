@@ -13,7 +13,7 @@ export default withMT({
       'headerAboutUs':"url('/src/assets/Header-Image-Aboutus.jpeg')",
       'headerProgram':"url('/src/assets/Header-Image-Program.jpg')",
       'headerNews':"url('/src/assets/Header-Image-News.jpg')",
-      'headerVideo':"url('/src/assets/Header-Image-Video.jpg')",
+      'headerOrganization':"url('/src/assets/Header-Image-Organization.jpg')",
       
     },
     screens: {

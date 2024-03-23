@@ -15,6 +15,7 @@ import NCC from "../../../assets/NCC.png";
 import NewsCard from "../../../components/NewsCard";
 import { GraphQlNews } from "../../../graphql/GrpahQlNews";
 import Loading from "../../../components/Loading";
+import { Link } from "react-router-dom";
 
 export default function Dashboard() {
   useEffect(() => {
@@ -93,11 +94,11 @@ export default function Dashboard() {
           >
             Youtube Channel
           </a>
-          <a
-            href="#"
+          <Link
+            to="/about us"
             class="group inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900"
           >
-            Learn more
+            About Us
             <svg
               class="w-3.5 h-3.5 ms-2 rtl:rotate-180 group-hover:animate-bounce-right"
               aria-hidden="true"
@@ -113,7 +114,7 @@ export default function Dashboard() {
                 d="M1 5h12m0 0L9 1m4 4L9 9"
               />
             </svg>
-          </a>
+          </Link>
         </div>
       </div>
       <div className="p-6 m-12 bg-white">
@@ -184,12 +185,12 @@ export default function Dashboard() {
         </div>
 
         <h1
-          className="font-extrabold text-3xl ms-3 capitalize"
-          data-aos="zoom-in-up"
+          className="font-extrabold text-3xl ms-3 capitalize mb-3"
+          data-aos="fade-up"
         >
           Our Program :
         </h1>
-        <div className="flex flex-wrap justify-around" data-aos="zoom-in-up">
+        <div className="flex flex-wrap justify-around">
           {programs.map((item) => (
             <div
               className="w-full sm:w-1/2 md:w-1/3 lg:w-1/5 p-3"
@@ -224,7 +225,7 @@ export default function Dashboard() {
         >
           Recent News :
         </h1>
-        <div className="w-full" data-aos="zoom-in-up">
+        <div className="w-full">
           {loadingNews ? <Loading /> : <NewsCard data={NewsData?.news.slice(0, 3)} />}
         </div>
       </div>
