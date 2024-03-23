@@ -17,7 +17,7 @@ export default function Footers() {
     <img
       src={Logo}
       alt=""
-      className="absolute inset-0 h-full w-full object-cover"
+      className="absolute inset-0 h-full w-full object-cover bg-white"
     />
   </div>
 
@@ -48,11 +48,11 @@ export default function Footers() {
 
           <ul className="mt-6 space-y-4 text-sm" data-aos="fade-right" data-aos-delay="200">
             <li>
-              <a href="#" className="text-white hover:opacity-75"> Home </a>
+              <a href="/" className="text-white hover:opacity-75"> Home </a>
             </li>
 
             <li>
-              <a href="#" className="text-white hover:opacity-75"> News </a>
+              <a href="/news" className="text-white hover:opacity-75"> News </a>
             </li>
 
             <li>
@@ -60,7 +60,7 @@ export default function Footers() {
             </li>
 
             <li>
-              <a href="#" className="text-white hover:opacity-75"> Achievements </a>
+              <a href="/organization" className="text-white hover:opacity-75"> Organization </a>
             </li>
 
           </ul>
@@ -71,15 +71,15 @@ export default function Footers() {
 
           <ul className="mt-6 space-y-4 text-sm" data-aos="fade-right" data-aos-delay="200">
             <li>
-              <a href="#" className="text-white hover:opacity-75"> Ketua </a>
+              <a href="/about us" className="text-white hover:opacity-75"> Ketua </a>
             </li>
 
             <li>
-              <a href="#" className="text-white hover:opacity-75"> Visi Misi Organisasi </a>
+              <a href="/about us" className="text-white hover:opacity-75"> Visi Misi Organisasi </a>
             </li>
 
             <li>
-              <a href="#" className="text-white hover:opacity-75"> Struktur Organisasi </a>
+              <a href="/organization" className="text-white hover:opacity-75"> Struktur Organisasi </a>
             </li>
           </ul>
         </div>

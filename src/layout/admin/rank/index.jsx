@@ -5,6 +5,7 @@ import { PencilIcon, PlusIcon } from "@heroicons/react/24/solid";
 import Loading from "../../../components/Loading";
 import { Link } from "react-router-dom";
 import { GraphQlRank } from "../../../graphql/GraphQlRank";
+import ItemNotFound from "../../../components/itemNotFound";
 
 export default function RankData() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -30,29 +31,30 @@ export default function RankData() {
   return (
     <div>
       <h2 class="text-4xl font-bold dark:text-white mb-6 ms-6">List Anggota</h2>
+      <div className="flex w-full justify-between items-center mb-3">
+        <Search
+          id="search-input"
+          placeholder="Cari nama anggota"
+          onChange={(e) => {
+            setSearch(e.target.value);
+            setCurrentPage(1);
+          }}
+          value={search}
+        />
+        <Link
+          to={"./addrank"}
+          className="mt-3 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-3xl text-sm p-2 w-80 text-center flex items-center justify-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        >
+          Beri Nilai
+          <PlusIcon className="h-6 w-6 ml-1" />
+        </Link>
+      </div>
       {loading ? (
         <Loading />
-      ) : (
+      ) : datas?.filter((element) =>
+          element.name.toLowerCase().includes(search.toLowerCase())
+        ).length > 0 ? (
         <div>
-          <div className="flex w-full justify-between items-center">
-            <Search
-              id="search-input"
-              placeholder="Cari nama anggota"
-              onChange={(e) => {
-                setSearch(e.target.value);
-                setCurrentPage(1);
-              }}
-              value={search}
-            />
-            <Link
-              to={"./addrank"}
-              className="mt-3 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-3xl text-sm p-2 w-80 text-center flex items-center justify-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-            >
-              Beri Nilai
-              <PlusIcon className="h-6 w-6 ml-1" />
-            </Link>
-          </div>
-
           <div className="overflow-x-auto my-6">
             <table className="table-auto w-full border-collapse overflow-hidden border border-blue-800">
               <thead className="text-center bg-blue-800 text-white">
@@ -118,51 +120,47 @@ export default function RankData() {
               </tbody>
             </table>
           </div>
-
-          <div className="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
-            <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
-              <div>
-                <p className="text-sm text-gray-700">
-                  Showing{" "}
-                  <span className="font-medium">{indexOfFirstItem}</span> to{" "}
-                  <span className="font-medium">
-                    {Math.ceil(
-                      datas.filter((element) =>
-                        element.name
-                          .toLowerCase()
-                          .includes(search.toLowerCase())
-                      ).length / itemsPerPage
-                    ) == currentPage
-                      ? datas.filter((element) =>
-                          element.name
-                            .toLowerCase()
-                            .includes(search.toLowerCase())
-                        ).length
-                      : indexOfLastItem}
-                  </span>{" "}
-                  of{" "}
-                  <span className="font-medium">
-                    {datas.filter((element) =>
-                      element.name.toLowerCase().includes(search.toLowerCase())
-                    ).length + " "}
-                  </span>
-                  results
-                </p>
-              </div>
-              <Pagination
-                itemsPerPage={itemsPerPage}
-                totalItems={
-                  datas.filter((element) =>
-                    element.name.toLowerCase().includes(search.toLowerCase())
-                  ).length
-                }
-                paginate={paginate}
-                currentPage={currentPage}
-              />
-            </div>
-          </div>
         </div>
+      ) : (
+        <ItemNotFound />
       )}
+      <div className="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
+        <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
+          <div>
+            <p className="text-sm text-gray-700">
+              Showing <span className="font-medium">{indexOfFirstItem}</span> to{" "}
+              <span className="font-medium">
+                {Math.ceil(
+                  datas?.filter((element) =>
+                    element.name.toLowerCase().includes(search.toLowerCase())
+                  ).length / itemsPerPage
+                ) == currentPage
+                  ? datas?.filter((element) =>
+                      element.name.toLowerCase().includes(search.toLowerCase())
+                    ).length
+                  : indexOfLastItem}
+              </span>{" "}
+              of{" "}
+              <span className="font-medium">
+                {datas?.filter((element) =>
+                  element.name.toLowerCase().includes(search.toLowerCase())
+                ).length + " "}
+              </span>
+              results
+            </p>
+          </div>
+          <Pagination
+            itemsPerPage={itemsPerPage}
+            totalItems={
+              datas?.filter((element) =>
+                element.name.toLowerCase().includes(search.toLowerCase())
+              ).length
+            }
+            paginate={paginate}
+            currentPage={currentPage}
+          />
+        </div>
+      </div>
     </div>
   );
 }

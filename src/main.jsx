@@ -16,7 +16,7 @@ import Login from "./layout/Login";
 import client from "./ApolloClient";
 import AdminRoot from "./routes/AdminRoot";
 import AboutUs from "./layout/user/aboutus";
-import ListAnggota from "./layout/user/aboutus/ListAnggota";
+import ListAnggota from "./layout/user/organization";
 import NotFound from "./components/NotFound";
 import LoggedIn, { LoggedOut } from "./auth/PrivateRoute";
 import UsersData from "./layout/admin/usersdata";
@@ -44,13 +44,14 @@ const router = createBrowserRouter(
           <Route path="/" element={<Dashboard />} />
 
           <Route path="/about us" element={<AboutUs />} />
-          <Route path="/about us/anggota" element={<ListAnggota />} />
 
           <Route path="/Programs/:ProgramType" element={<Programs />} />
           <Route path="/programs/content/:id" element={<DetailPrograms />} />
 
           <Route path="/news" element={<NewsDisplay />} />
           <Route path="/news/:id" element={<NewsDetail />} />
+
+          <Route path="/organization" element={<ListAnggota />} />
           
         </Route>
         <Route path="/login" element={<Login />} />

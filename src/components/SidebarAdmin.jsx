@@ -1,14 +1,26 @@
-import { RemoveAuthCookie } from "../auth/cookies";
+import { RemoveAuthCookie, getAuthCookieImage } from "../auth/cookies";
 import { PencilIcon } from "@heroicons/react/24/solid";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import Logo from "../assets/logo_PSM.png";
+import Rank from "../assets/Icons/ranking-podium.png"
+import News from "../assets/Icons/news.png"
+import Program from "../assets/Icons/program.png"
+import User from "../assets/Icons/user.png"
 
 export default function SidebarAdmin() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const toggleDropdown = () => {
     setIsDropdownOpen((prev) => !prev);
   };
+
+  const mobileDropdown = () => {
+    setMobileMenuOpen(!mobileMenuOpen);
+  };
+
+  const profilImage = getAuthCookieImage();
 
   return (
     <div>
@@ -17,9 +29,7 @@ export default function SidebarAdmin() {
           <div className="flex items-center justify-between">
             <div className="flex items-center justify-start rtl:justify-end">
               <button
-                data-drawer-target="logo-sidebar"
-                data-drawer-toggle="logo-sidebar"
-                aria-controls="logo-sidebar"
+                onClick={mobileDropdown}
                 type="button"
                 className="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
               >
@@ -38,14 +48,10 @@ export default function SidebarAdmin() {
                   />
                 </svg>
               </button>
-              <a href="https://flowbite.com" className="flex ms-2 md:me-24">
-                <img
-                  src="https://flowbite.com/docs/images/logo.svg"
-                  className="h-8 me-3"
-                  alt="FlowBite Logo"
-                />
+              <a href="/admin/" className="flex ms-2 md:me-24">
+                <img src={Logo} className="h-8 me-3" />
                 <span className="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">
-                  Flowbite
+                  GDN
                 </span>
               </a>
             </div>
@@ -54,7 +60,7 @@ export default function SidebarAdmin() {
                 <img
                   id="avatarButton"
                   className="w-10 h-10 rounded-full cursor-pointer"
-                  src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
+                  src={profilImage}
                   alt="User dropdown"
                   onClick={toggleDropdown}
                 />
@@ -115,7 +121,9 @@ export default function SidebarAdmin() {
       </nav>
       <aside
         id="logo-sidebar"
-        className="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
+        className={`fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform ${
+          mobileMenuOpen ? "translate-x-0" : "-translate-x-full"
+        } bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700`}
         aria-label="Sidebar"
       >
         <div className="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
@@ -125,8 +133,8 @@ export default function SidebarAdmin() {
                 to="/admin"
                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
               >
-                <PencilIcon className="w-5 h-5" />
-                <span className="ms-3">Dashboard</span>
+                <img src={User} className="w-5 h-5"/>
+                <span className="ms-3">Member</span>
               </Link>
             </li>
             <li>
@@ -134,7 +142,7 @@ export default function SidebarAdmin() {
                 to="/admin/programs"
                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
               >
-                <PencilIcon className="w-5 h-5" />
+                <img src={Program} className="w-5 h-5"/>
                 <span className="ms-3">Programs</span>
               </Link>
             </li>
@@ -143,7 +151,7 @@ export default function SidebarAdmin() {
                 to="/admin/news"
                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
               >
-                <PencilIcon className="w-5 h-5" />
+                <img src={News} className="w-5 h-5"/>
                 <span className="ms-3">News</span>
               </Link>
             </li>
@@ -152,7 +160,7 @@ export default function SidebarAdmin() {
                 to="/admin/rank"
                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
               >
-                <PencilIcon className="w-5 h-5" />
+                <img src={Rank} className="w-5 h-5"/>
                 <span className="ms-3">Rank</span>
               </Link>
             </li>

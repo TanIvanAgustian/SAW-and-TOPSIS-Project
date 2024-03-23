@@ -44,7 +44,7 @@ export default function Login() {
           items.password == formik.values.password
         ) {
           isuserthere = true;
-          setAuthCookie(items.id, items.position);
+          setAuthCookie(items.id, items.position, items.image);
           openAlert("success", "Login Berhasil, Selamat Datang " + items.name);
           window.location.reload();
         }

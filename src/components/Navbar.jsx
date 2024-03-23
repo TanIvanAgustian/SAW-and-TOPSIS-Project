@@ -9,7 +9,9 @@ import {
   XMarkIcon,
   AcademicCapIcon,
   MusicalNoteIcon,
+  TrophyIcon ,
 } from "@heroicons/react/24/outline";
+
 import {
   ChevronDownIcon,
   PhoneIcon,
@@ -22,32 +24,32 @@ const programs = [
   {
     name: "Concert",
     description: "A Grand Concert for A Competition",
-    href: "#",
+    href: "/programs/concert",
     icon: MusicalNoteIcon,
   },
   {
     name: "CHA",
     description: "Choir Humanity Action for People",
-    href: "#",
+    href: "/programs/choir humanity action",
     icon: CursorArrowRaysIcon,
   },
   {
     name: "NCC",
     description: "Newcomers Concert for new member",
-    href: "#",
+    href: "/programs/newcomers concert",
     icon: FingerPrintIcon,
   },
   {
     name: "Goes To School",
     description: "A Visit to A Senior High School",
-    href: "#",
+    href: "/programs/goes to school",
     icon: AcademicCapIcon,
   },
   {
     name: "Competition",
-    description: "A Visit to A Senior High School",
-    href: "#",
-    icon: AcademicCapIcon,
+    description: "A Competition for Reaching Top",
+    href: "/programs/competition",
+    icon: TrophyIcon,
   },
 ];
 const callsToAction = [
@@ -70,7 +72,10 @@ export default function Navbar() {
       >
         <div className="flex items-center justify-center pt-6">
           <a href="/" className="flex items-center m-1.5 p-1.5">
-            <img className="h-8 w-auto rounded-full" src={Logo} alt="" />
+            <img
+              className="h-8 w-auto rounded-full bg-white"
+              src={Logo}
+            />
             <label className="ps-2 text-white font-black text-xl">
               GDN Official Website
             </label>
@@ -128,24 +133,26 @@ export default function Navbar() {
                 <Popover.Panel className="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-blue-900 shadow-lg ring-1 ring-gray-900/5">
                   <div className="p-4">
                     {programs.map((item) => (
-                      <div
-                        key={item.name}
-                        className="group relative flex items-center gap-x-6 rounded-lg p-3 text-sm leading-6 hover:bg-white"
-                      >
-                        <div className="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-blue-900">
-                          <item.icon
-                            className="h-6 w-6 text-blue-900 group-hover:text-gray-50"
-                            aria-hidden="true"
-                          />
+                      <Link to={item.href}>
+                        <div
+                          key={item.name}
+                          className="group relative flex items-center gap-x-6 rounded-lg p-3 text-sm leading-6 hover:bg-white"
+                        >
+                          <div className="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-blue-900">
+                            <item.icon
+                              className="h-6 w-6 text-blue-900 group-hover:text-gray-50"
+                              aria-hidden="true"
+                            />
+                          </div>
+                          <div className="flex-auto text-gray-50 hover:text-blue-900">
+                            <a href={item.href} className="block font-semibold">
+                              {item.name}
+                              <span className="absolute inset-0" />
+                            </a>
+                            <p className="mt-1">{item.description}</p>
+                          </div>
                         </div>
-                        <div className="flex-auto text-gray-50 hover:text-blue-900">
-                          <a href={item.href} className="block font-semibold">
-                            {item.name}
-                            <span className="absolute inset-0" />
-                          </a>
-                          <p className="mt-1">{item.description}</p>
-                        </div>
-                      </div>
+                      </Link>
                     ))}
                   </div>
                   <div className="grid grid-cols-2 divide-x divide-gray-900/5 bg-gray-50">
@@ -168,17 +175,17 @@ export default function Navbar() {
             </Popover>
 
             <Link
-              to="news"
+              to="/news"
               className="hover:animate-bigger text-sm font-semibold leading-6 text-amber-50 px-2 rounded hover:bg-white"
             >
               News
             </Link>
-            <a
-              href="#"
+            <Link
+              to="/organization"
               className="hover:animate-bigger text-sm font-semibold leading-6 text-amber-50 px-2 rounded hover:bg-white"
             >
               Organization
-            </a>
+            </Link>
             <Link
               to="/about us"
               className="hover:animate-bigger text-sm font-semibold leading-6 text-amber-50 px-2 rounded hover:bg-white"
@@ -197,13 +204,8 @@ export default function Navbar() {
         <div className="fixed inset-0 z-10" />
         <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-blue-700/90 text-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
-            <a href="#" className="-m-1.5 p-1.5">
-              <span className="sr-only">Your Company</span>
-              <img
-                className="h-8 w-auto"
-                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                alt=""
-              />
+            <a href="#" className="-m-1.5 p-1.5 text-white">
+              <img className="h-8 w-auto bg-white rounded-full" src={Logo} />
             </a>
             <button
               type="button"
@@ -217,9 +219,10 @@ export default function Navbar() {
           <div className="mt-6 flow-root">
             <div className="-my-6 divide-y divide-gray-500/10">
               <div className="space-y-2 py-6 ">
-              <Link
+                <Link
                   to="/"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-amber-50 hover:bg-gray-50"
+                  onClick={() => setMobileMenuOpen(false)}
                 >
                   Home
                 </Link>
@@ -241,6 +244,7 @@ export default function Navbar() {
                           <Disclosure.Button
                             key={item.name}
                             as="a"
+                            onClick={() => setMobileMenuOpen(false)}
                             href={item.href}
                             className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-amber-50 hover:bg-gray-50"
                           >
@@ -254,18 +258,21 @@ export default function Navbar() {
                 <Link
                   to="/news"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-amber-50 hover:bg-gray-50"
+                  onClick={() => setMobileMenuOpen(false)}
                 >
                   News
                 </Link>
-                <a
-                  href="#"
+                <Link
+                  to="/organization"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-amber-50 hover:bg-gray-50"
+                  onClick={() => setMobileMenuOpen(false)}
                 >
                   Organization
-                </a>
+                </Link>
                 <Link
                   to="/about us"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-amber-50 hover:bg-gray-50"
+                  onClick={() => setMobileMenuOpen(false)}
                 >
                   About Us
                 </Link>
