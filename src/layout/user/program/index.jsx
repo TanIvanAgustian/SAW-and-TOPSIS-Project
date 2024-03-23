@@ -7,7 +7,7 @@ import Search from "../../../components/Search";
 import Loading from "../../../components/Loading";
 import Pagination from "../../../components/Pagination";
 import { useState } from "react";
-import ItemNotFound from "../../../components/itemNotFound";
+import ItemNotFound from "../../../components/ItemNotFound";
 
 export default function Programs() {
   const { ProgramType } = useParams();

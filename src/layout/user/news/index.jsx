@@ -6,7 +6,7 @@ import Loading from "../../../components/Loading";
 import Search from "../../../components/Search";
 import Pagination from "../../../components/Pagination";
 import { useState } from "react";
-import ItemNotFound from "../../../components/itemNotFound";
+import ItemNotFound from "../../../components/ItemNotFound";
 
 export default function NewsDisplay() {
   const [currentPage, setCurrentPage] = useState(1);
