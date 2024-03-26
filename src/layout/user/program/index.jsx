@@ -32,7 +32,7 @@ export default function Programs() {
       <div className="absolute h-[400px] w-full text-white bg-headerProgram bg-no-repeat bg-cover bg-scroll">
         <div className="bg-blue-600/40 h-full">
           <div className="flex justify-center p-2 font-bold">
-            <h1 className="text-4xl uppercase font-black mt-44 font-serif">
+            <h1 className="text-4xl uppercase font-black mt-44">
               {" "}
               {ProgramType}{" "}
             </h1>

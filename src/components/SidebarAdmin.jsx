@@ -48,7 +48,7 @@ export default function SidebarAdmin() {
                   />
                 </svg>
               </button>
-              <a href="/admin/" className="flex ms-2 md:me-24">
+              <a href="/admin" className="flex ms-2 md:me-24">
                 <img src={Logo} className="h-8 me-3" />
                 <span className="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">
                   GDN
@@ -132,6 +132,7 @@ export default function SidebarAdmin() {
               <Link
                 to="/admin"
                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                onClick={mobileDropdown}
               >
                 <img src={User} className="w-5 h-5"/>
                 <span className="ms-3">Member</span>
@@ -141,6 +142,7 @@ export default function SidebarAdmin() {
               <Link
                 to="/admin/programs"
                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                onClick={mobileDropdown}
               >
                 <img src={Program} className="w-5 h-5"/>
                 <span className="ms-3">Programs</span>
@@ -150,6 +152,7 @@ export default function SidebarAdmin() {
               <Link
                 to="/admin/news"
                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                onClick={mobileDropdown}
               >
                 <img src={News} className="w-5 h-5"/>
                 <span className="ms-3">News</span>
@@ -159,6 +162,7 @@ export default function SidebarAdmin() {
               <Link
                 to="/admin/rank"
                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                onClick={mobileDropdown}
               >
                 <img src={Rank} className="w-5 h-5"/>
                 <span className="ms-3">Rank</span>

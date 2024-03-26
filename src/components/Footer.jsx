@@ -12,14 +12,7 @@ export default function Footers() {
   })
 
   return (
-    <footer className="bg-indigo-900 lg:grid lg:grid-cols-5">
-  <div className="relative block h-32 lg:col-span-2 lg:h-full">
-    <img
-      src={Logo}
-      alt=""
-      className="absolute inset-0 h-full w-full object-cover bg-white"
-    />
-  </div>
+    <footer className="bg-indigo-900 lg:grid lg:grid-cols-3">
 
   <div className="px-4 py-16 sm:px-6 lg:col-span-3 lg:px-8">
     <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
