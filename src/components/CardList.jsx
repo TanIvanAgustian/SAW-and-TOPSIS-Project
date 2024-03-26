@@ -29,7 +29,7 @@ export default function CardList(props) {
       </h1>
       <div className={style}>
         {koor?.map((anggota) => (
-          <Card className="mt-6 w-auto mx-2 bg-indigo-700 rounded-2xl text-white pt-3 px-3 pb-[75px]" data-aos="zoom-in-up">
+          <Card className="mt-6 w-auto mx-2 bg-blue-700 rounded-2xl text-white pt-3 px-3 pb-[75px]" data-aos="zoom-in-up">
             <CardHeader
               color="blue-gray"
               className="relative lg:w-[300px] lg:h-[300px] sm:h-[50px] sm:w-[50px] self-center rounded-full"
@@ -137,7 +137,7 @@ export default function CardList(props) {
         }
       >
         {member?.map((anggota) => (
-          <Card className="group mt-6 w-[275px] mx-1 bg-indigo-700 rounded-2xl text-white pt-3 pb-[75px]" data-aos="zoom-in-up">
+          <Card className="group mt-6 w-[275px] mx-1 bg-blue-700 rounded-2xl text-white pt-3 pb-[75px]" data-aos="zoom-in-up">
             <CardHeader
               color="blue-gray"
               className="relative w-[200px] h-[200px] m-1 self-center rounded-full group-hover:animate-bigger-slowly"

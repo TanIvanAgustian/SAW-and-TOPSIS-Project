@@ -67,51 +67,49 @@ export default function Navbar() {
   return (
     <header className="bg-blue-800/50 hover:bg-blue-800/100 absolute z-10 w-full">
       <nav
-        className="mx-auto flex max-w-7xl items-center justify-between pb-6"
+        className="mx-auto flex max-w-7xl items-center  justify-between lg:pb-6 md:pb-3"
         aria-label="Global"
       >
-        <div className="flex items-center justify-center pt-6">
+        <div className="flex items-center justify-center lg:pt-6 md:pt-3">
+          
           <a href="/" className="flex items-center m-1.5 p-1.5">
             <img
-              className="h-8 w-auto rounded-full bg-white"
+              className="lg:h-8 h-6 w-auto rounded-full bg-white"
               src={Logo}
             />
-            <label className="ps-2 text-white font-black text-xl">
-              GDN Official Website
+            <label className="ps-2 text-white font-black lg:text-xl md:text-base text-sm">
+              GDN Official
             </label>
           </a>
         </div>
         <div className="flex lg:hidden text-white">
           <button
             type="button"
-            className="inline-flex items-center justify-center rounded-md mt-6 p-1.5 me-6 hover:bg-white  hover:text-blur-700"
+            className="inline-flex items-center justify-center rounded-md md:mt-6 mt-1 p-1.5 md:me-6 me-2 hover:bg-white  hover:text-black"
             onClick={() => setMobileMenuOpen(true)}
           >
             <span className="sr-only">Open main menu</span>
             <Bars3Icon
-              className="h-8 w-8 flex items-center"
+              className="h-6 w-6 flex items-center"
               aria-hidden="true"
             />
           </button>
         </div>
         <div className="hidden lg:block">
           <div className="flex lg:flex-1 lg:justify-end">
-            <Link
-              to="/login"
-              className="text-sm p-2 font-semibold leading-6 text-amber-50 rounded hover:bg-white hover:text-blue-900 my-3"
+            <div
+              className="text-sm font-semibold leading-6 text-amber-50 rounded hover:bg-white hover:text-blue-900 my-3"
             >
-              <FingerPrintIcon className="me-1 h-5 w-5 inline" />
-              Log in
-            </Link>
+            </div>
           </div>
 
           <Popover.Group className="hidden lg:flex lg:gap-x-12">
-            <Link
-              to="/"
+            <a
+              href="/"
               className="hover:animate-bigger text-sm font-semibold leading-6 text-amber-50 px-2 rounded hover:bg-white"
             >
               Home
-            </Link>
+            </a>
             <Popover className="relative">
               <Popover.Button className="hover:animate-bigger flex items-center px-2 rounded gap-x-1 text-sm font-semibold leading-6 text-amber-50 hover:bg-white hover:text-blue-700">
                 Our Program
@@ -133,7 +131,7 @@ export default function Navbar() {
                 <Popover.Panel className="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-blue-900 shadow-lg ring-1 ring-gray-900/5">
                   <div className="p-4">
                     {programs.map((item) => (
-                      <Link to={item.href}>
+                      <a href={item.href}>
                         <div
                           key={item.name}
                           className="group relative flex items-center gap-x-6 rounded-lg p-3 text-sm leading-6 hover:bg-white"
@@ -152,7 +150,7 @@ export default function Navbar() {
                             <p className="mt-1">{item.description}</p>
                           </div>
                         </div>
-                      </Link>
+                      </a>
                     ))}
                   </div>
                   <div className="grid grid-cols-2 divide-x divide-gray-900/5 bg-gray-50">
@@ -174,24 +172,24 @@ export default function Navbar() {
               </Transition>
             </Popover>
 
-            <Link
-              to="/news"
+            <a
+              href="/news"
               className="hover:animate-bigger text-sm font-semibold leading-6 text-amber-50 px-2 rounded hover:bg-white"
             >
               News
-            </Link>
-            <Link
-              to="/organization"
+            </a>
+            <a
+              href="/organization"
               className="hover:animate-bigger text-sm font-semibold leading-6 text-amber-50 px-2 rounded hover:bg-white"
             >
               Organization
-            </Link>
-            <Link
-              to="/about us"
+            </a>
+            <a
+              href="/about us"
               className="hover:animate-bigger text-sm font-semibold leading-6 text-amber-50 px-2 rounded hover:bg-white"
             >
               About Us
-            </Link>
+            </a>
           </Popover.Group>
         </div>
       </nav>
@@ -219,13 +217,13 @@ export default function Navbar() {
           <div className="mt-6 flow-root">
             <div className="-my-6 divide-y divide-gray-500/10">
               <div className="space-y-2 py-6 ">
-                <Link
-                  to="/"
+                <a
+                  href="/"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-amber-50 hover:bg-gray-50"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   Home
-                </Link>
+                </a>
                 <Disclosure as="div" className="-mx-3">
                   {({ open }) => (
                     <>
@@ -255,36 +253,29 @@ export default function Navbar() {
                     </>
                   )}
                 </Disclosure>
-                <Link
-                  to="/news"
+                <a
+                  href="/news"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-amber-50 hover:bg-gray-50"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   News
-                </Link>
-                <Link
-                  to="/organization"
+                </a>
+                <a
+                  href="/organization"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-amber-50 hover:bg-gray-50"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   Organization
-                </Link>
-                <Link
-                  to="/about us"
+                </a>
+                <a
+                  href="/about us"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-amber-50 hover:bg-gray-50"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   About Us
-                </Link>
+                </a>
               </div>
-              <div className="py-6 border-top-4 border-white">
-                <Link
-                  to="/login"
-                  className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-amber-50 hover:bg-gray-50"
-                >
-                  <FingerPrintIcon className="me-1 h-5 w-5 inline" /> Log in
-                </Link>
-              </div>
+              
             </div>
           </div>
         </Dialog.Panel>

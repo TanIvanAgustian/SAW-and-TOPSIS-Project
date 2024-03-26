@@ -1,3 +1,5 @@
+import Logo from "../assets/logo_PSM.png";
+
 export default function Loading() {
   return (
     <div class="flex w-full items-center justify-center h-56 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
@@ -20,6 +22,14 @@ export default function Loading() {
         </svg>
         <span class="sr-only">Loading...</span>
       </div>
+    </div>
+  );
+}
+
+export function LoadingWithLogo() {
+  return (
+    <div className="flex flex-col justify-center items-center h-screen">
+      <img src={Logo} alt="Loading logo" className="w-20 h-20 animate-ping" />
     </div>
   );
 }

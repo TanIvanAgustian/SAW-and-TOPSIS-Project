@@ -6,11 +6,11 @@ import { GetAllPeopleByPosition } from "../../../components/GetAllPeople";
 import Footers from "../../../components/Footer";
 import AOS from "aos";
 import { useEffect } from "react";
-import Logo from "../../../assets/logo_PSM.png"
+import Logo from "../../../assets/logo_PSM.png";
 
 export default function AboutUs() {
   useEffect(() => {
-    AOS.init({ duration: 1000 });
+    AOS.init({ duration: 500 });
   });
 
   const { ketua, loading, error } = GetAllPeopleByPosition();
@@ -32,10 +32,7 @@ export default function AboutUs() {
       <div className="absolute h-[400px] w-full text-white bg-headerAboutUs bg-no-repeat bg-cover bg-scroll">
         <div className="bg-blue-600/40 h-full">
           <div className="flex justify-center p-2 font-bold">
-            <h1 className="text-4xl uppercase font-black mt-44 font-serif">
-              {" "}
-              About US{" "}
-            </h1>
+            <h1 className="text-4xl uppercase font-black mt-44"> About US </h1>
           </div>
           <div className="flex justify-center font-bold">
             <BreadCrumb items={["about us"]} />
@@ -47,40 +44,36 @@ export default function AboutUs() {
           <div>
             <div className="flex my-6 justify-around">
               <div className="w-8/12">
-                <h1 className="font-black text-3xl text-center uppercase mb-3" data-aos="fade-right">
+                <h1
+                  className="font-black text-3xl text-center uppercase mb-3"
+                  data-aos="fade-right"
+                >
                   gita dian nuswa
                 </h1>
-                <h1 className="font-extrabold text-xl capitalize" data-aos="fade-right">
+                <h1
+                  className="font-extrabold text-xl capitalize"
+                  data-aos="fade-right"
+                >
                   apa itu gita dian nuswa?
                 </h1>
                 <div className="mb-8" data-aos="fade-right">
                   <p className="my-3 text-justify">
-                    Selain itu, Gita Dian Nuswa
-                    Choir juga aktif berpartisipasi dalam berbagai kompetisi
-                    paduan suara, baik tingkat lokal maupun nasional, sebagai
-                    wujud dari dedikasi mereka dalam meningkatkan kualitas
-                    musikalitas dan prestasi. Melalui latihan rutin, kerja
-                    keras, dan semangat kebersamaan, mereka terus menginspirasi
-                    dan menghibur dengan penampilan vokal yang memukau. Dengan
-                    visi untuk menjadi paduan suara yang berkualitas dan
-                    berprestasi, Gita Dian Nuswa Choir terus menjaga tradisi
-                    keunggulan dan memperkaya pengalaman seni musik vokal bagi
-                    anggotanya serta para penikmat musik.
+                    Paduan Suara Mahasiswa Universitas Dian Nuswantoro (UDINUS)
+                    yang dikenal sebagai PSM Gita Dian Nuswa merupakan Unit
+                    Kegiatan Mahasiswa yang berkembang di bidang seni khususnya
+                    seni suara. Berdiri sejak tahun 1995, PSM Gita Dian Nuswa
+                    sudah beberapa kali mengikuti ajang kompetisi tingkat
+                    nasional maupun internasional dan berhasil meraih prestasi
+                    yang membanggakan.
                   </p>
                   <p className="my-3 text-justify">
-                    Gita Dian Nuswa Choir adalah sebuah paduan suara mahasiswa
-                    yang berasal dari Universitas Dian Nuswantoro (UDINUS).
-                    Mereka adalah kelompok vokal yang terdiri dari
-                    mahasiswa-mahasiswa yang memiliki minat dan bakat dalam
-                    menyanyi. Sebagai sebuah paduan suara, Gita Dian Nuswa
-                    memiliki fokus utama dalam mengembangkan kualitas vokal,
-                    harmonisasi, dan ekspresi musikal mereka. Sebagai bagian
-                    dari komunitas mahasiswa di Universitas Dian Nuswantoro,
-                    Gita Dian Nuswa Choir berperan penting dalam kegiatan seni
-                    dan budaya kampus. Mereka tidak hanya menjadi representasi
-                    dari bakat seni vokal mahasiswa, tetapi juga menjadi duta
-                    dalam mempromosikan keindahan musik vokal di lingkungan
-                    kampus maupun di luar kampus.
+                    Selain prestasi di dunia seni suara, PSM Gita Dian Nuswa
+                    juga berperan penting dalam menyemarakkan kehidupan kampus.
+                    Turut serta dalam acara-acara kampus, meramaikan perayaan,
+                    dan memberikan warna positif dalam lingkungan akademis.
+                  </p>
+                  <p className="my-3 text-justify">
+                  Melalui dedikasi dan prestasinya, PSM Gita Dian Nuswa tidak hanya menjadi wadah bagi pengembangan bakat seni suara mahasiswa UDINUS tetapi juga menjadi kebanggaan bagi universitas dalam menghadapi kompetisi seni suara di tingkat yang lebih luas.
                   </p>
                 </div>
               </div>
@@ -96,10 +89,16 @@ export default function AboutUs() {
             <Loading />
           ) : (
             <div>
-              <h1 className="font-black text-3xl text-center capitalize mb-3" data-aos="fade-left">
+              <h1
+                className="font-black text-3xl text-center capitalize mb-3"
+                data-aos="fade-left"
+              >
                 Profil Ketua
               </h1>
-              <h1 className="font-extrabold text-xl text-center capitalize" data-aos="fade-left">
+              <h1
+                className="font-extrabold text-xl text-center capitalize"
+                data-aos="fade-left"
+              >
                 {ketua[0].name}
               </h1>
               <div className="flex my-6 justify-around">

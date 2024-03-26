@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 const withMT = require("@material-tailwind/html/utils/withMT");
+const defaultTheme = require('tailwindcss/defaultTheme');
 
 export default withMT({
   content: [
@@ -14,16 +15,12 @@ export default withMT({
       'headerProgram':"url('/src/assets/Header-Image-Program.jpg')",
       'headerNews':"url('/src/assets/Header-Image-News.jpg')",
       'headerOrganization':"url('/src/assets/Header-Image-Organization.jpg')",
-      
-    },
-    screens: {
-      'sm': '640px',
-      'md': '768px',
-      'lg': '1024px',
-      'xl': '1280px',
-      '2xl': '1536px',
     },
     extend: {
+      screens: {
+        'xs': '475px',
+        ...defaultTheme.screens,
+      },
       keyframes: {
         wave: {
           '0%': { transform: 'rotate(0.0deg)' },
