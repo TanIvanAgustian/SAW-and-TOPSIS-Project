@@ -16,15 +16,15 @@ export default function CardList(props) {
   let style = "";
   if (Title == "Badan Pengurus Harian") {
     style =
-      "grid lg:grid-cols-2 justify-between md:grid-cols-1 lg:mx-[200px] md:mx-[100px]";
+      "mb-6 grid lg:grid-cols-2 justify-between md:grid-cols-2 grid-cols-1 lg:mx-[200px] md:mx-[0px] sm:mx-[100px] mx-[10px]";
   } else {
     style =
-      "grid lg:grid-cols-1 justify-between md:grid-cols-2 lg:mx-[350px] md:mx-[100px]";
+      "mb-6 grid grid-cols-1 justify-between lg:mx-[350px] md:mx-[150px] sm:mx-[100px] mx-[10px]";
   }
 
   return (
     <div>
-      <h1 className="text-2xl font-serif font-black text-center uppercase">
+      <h1 className="lg:text-2xl md:text-2xl text-xl font-serif font-black text-center uppercase">
         {Title}
       </h1>
       <div className={style}>
@@ -32,7 +32,7 @@ export default function CardList(props) {
           <Card className="mt-6 w-auto mx-2 bg-blue-700 rounded-2xl text-white pt-3 px-3 pb-[75px]" data-aos="zoom-in-up">
             <CardHeader
               color="blue-gray"
-              className="relative lg:w-[300px] lg:h-[300px] sm:h-[50px] sm:w-[50px] self-center rounded-full"
+              className="relative lg:w-[300px] lg:h-[300px] sm:h-[200px] sm:w-[200px] self-center rounded-full"
             >
               <img
                 className="bg-transparent aspect-square object-cover"
@@ -137,7 +137,7 @@ export default function CardList(props) {
         }
       >
         {member?.map((anggota) => (
-          <Card className="group mt-6 w-[275px] mx-1 bg-blue-700 rounded-2xl text-white pt-3 pb-[75px]" data-aos="zoom-in-up">
+          <Card className="group mt-6 w-[275px] mx-1 bg-blue-700 rounded-2xl text-white pt-3 pb-[20px]" data-aos="zoom-in-up">
             <CardHeader
               color="blue-gray"
               className="relative w-[200px] h-[200px] m-1 self-center rounded-full group-hover:animate-bigger-slowly"

@@ -9,6 +9,23 @@ export default withMT({
     'node_modules/flowbite-react/lib/esm/**/*.js',
   ],
   theme: {
+    screens: {
+      'xs': '200px',
+      'sm': '640px',
+      // => @media (min-width: 640px) { ... }
+
+      'md': '768px',
+      // => @media (min-width: 768px) { ... }
+
+      'lg': '1024px',
+      // => @media (min-width: 1024px) { ... }
+
+      'xl': '1280px',
+      // => @media (min-width: 1280px) { ... }
+
+      '2xl': '1536px',
+      // => @media (min-width: 1536px) { ... }
+    },
     backgroundImage: {
       'backgroundlogin': "url('/src/assets/logo_PSM.png')",
       'headerAboutUs':"url('/src/assets/Header-Image-Aboutus.jpeg')",
@@ -17,10 +34,6 @@ export default withMT({
       'headerOrganization':"url('/src/assets/Header-Image-Organization.jpg')",
     },
     extend: {
-      screens: {
-        'xs': '475px',
-        ...defaultTheme.screens,
-      },
       keyframes: {
         wave: {
           '0%': { transform: 'rotate(0.0deg)' },
