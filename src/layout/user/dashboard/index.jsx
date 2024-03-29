@@ -68,10 +68,15 @@ export default function Dashboard() {
 
   return (
     <div className="bg-blue-800">
-      <video className="md:max-lg:h-full min-h-[20rem] bg-cover w-full rounded-lg aspect-w-16 aspect-h-9" autoPlay muted loop>
-  <source src={Background} type="video/mp4" />
-  Your browser does not support the video tag.
-</video>
+      <video
+        className="md:max-lg:h-full min-h-[20rem] object-cover w-full rounded-lg aspect-w-16 aspect-h-9"
+        autoPlay
+        muted
+        loop
+      >
+        <source src={Background} type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
 
       <div className="absolute inset-0 lg:h-[50rem] md:h-[35rem] sm:h-[25rem] h-[20rem] flex flex-col justify-center items-center text-white">
         <div className="flex justify-center font-bold p-2">
@@ -89,16 +94,17 @@ export default function Dashboard() {
           </h1>
         </div>
 
-        <div className="flex justify-center p-2 font-bold">
-        <a
-  href="https://www.youtube.com/@GitaDianNuswa"
-  class="hover:animate-fast-waving me-3 inline-flex items-center justify-center lg:px-12 lg:py-3 md:px-6 md:py-2 sm:px-2 sm:py-1 lg:text-base sm:text-sm text-xs font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:ring-red-300 dark:focus:ring-red-900"
->
+        <div className="flex justify-center p-2  font-bold">
+          <a
+            href="https://www.youtube.com/@GitaDianNuswa"
+            class="hover:animate-fast-waving me-3 inline-flex items-center justify-center lg:px-12 lg:py-6 px-6 py-3 lg:text-base sm:text-sm text-xs font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:ring-red-300 dark:focus:ring-red-900"
+          >
             Youtube Channel
           </a>
+
           <a
             href="/about us"
-            class="group inline-flex items-center justify-center px-5 py-3 lg:text-base sm:text-sm text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900"
+            class="group inline-flex items-center justify-center lg:px-12 lg:py-6 px-6 py-3 lg:text-base sm:text-sm text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900"
           >
             About Us
             <svg
@@ -120,120 +126,122 @@ export default function Dashboard() {
         </div>
       </div>
 
-      <div className="lg:p-6 md:p-4 p-1.5 lg:m-12 md:m-6 sm:m-3 m-2 bg-white">
-        <h1
-          data-aos="zoom-in-up"
-          className="uppercase text-center mb-4 text-3xl font-extrabold leading-none tracking-tight text-gray-900 md:text-4xl lg:text-5xl dark:text-white"
-        >
-          Gita
-          <mark className="px-2 py-0 bg-transparent text-blue-600">Dian</mark>
-          Nuswa
-          <mark class="text-xl ms-1 align-top px-2 py-0 mt-auto text-white bg-blue-600 rounded dark:bg-blue-500">
-            Official Website
-          </mark>
-        </h1>
+      <div className="m-3">
+        <div className="lg:p-6 md:p-4 lg:m-9 md:m-5  bg-white rounded-lg">
+          <h1
+            data-aos="zoom-in-up"
+            className="uppercase text-center mb-4 pt-4 lg:text-5xl md:text-3xl text-xl font-extrabold leading-none tracking-tight text-gray-900 dark:text-white"
+          >
+            Gita
+            <mark className="px-2 py-0 bg-transparent text-blue-700">Dian</mark>
+            Nuswa
+            <mark class="lg:text-xl md:text-base text-sm ms-1 align-super px-2 py-0 text-white bg-blue-700 rounded dark:bg-blue-500">
+              Official Website
+            </mark>
+          </h1>
 
-        <blockquote
-          data-aos="zoom-in-up"
-          class="text-xl italic flex justify-center font-semibold text-center text-black"
-        >
-          <p className="w-8/12">
-            "Selamat datang di website official kami, tempat di mana setiap klik
-            adalah petualangan baru. disini, kami mengundang Anda untuk
-            menemukan dunia yang penuh warna dan pengetahuan yang tak terbatas.
-            mari kita menjalin ikatan yang kuat dalam komunitas yang berbagi
-            semangat dan visi. Terima kasih telah bergabung, mari kita mulai
-            menjelajahi bersama!"
-          </p>
-        </blockquote>
+          <blockquote
+            data-aos="zoom-in-up"
+            class="lg:text-xl text-base italic flex justify-center font-semibold text-center text-black"
+          >
+            <p className="lg:w-8/12 md:w-10/12 w-11/12">
+              "Selamat datang di website official kami, tempat di mana setiap
+              klik adalah petualangan baru. disini, kami mengundang Anda untuk
+              menemukan dunia yang penuh warna dan pengetahuan yang tak
+              terbatas. mari kita menjalin ikatan yang kuat dalam komunitas yang
+              berbagi semangat dan visi. Terima kasih telah bergabung, mari kita
+              mulai menjelajahi bersama!"
+            </p>
+          </blockquote>
 
-        <div
-          class="inline-flex items-center justify-center w-full"
-          data-aos="zoom-in-up"
-        >
-          <hr class="w-64 h-1 my-8 bg-gray-900 border-0 rounded dark:bg-gray-700" />
-          <div class="absolute px-4 -translate-x-1/2 bg-white left-1/2 dark:bg-gray-900">
-            <svg
-              class="w-4 h-4 text-gray-700 dark:text-gray-300"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="currentColor"
-              viewBox="0 0 18 14"
-            >
-              <path d="M6 0H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3H2a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Zm10 0h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3h-1a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Z" />
-            </svg>
-          </div>
-        </div>
-
-        <div data-aos="zoom-in-up">
-          <CarouselItems images={CarouselImages} />
-        </div>
-
-        <div
-          class="inline-flex items-center justify-center w-full"
-          data-aos="zoom-in-up"
-        >
-          <hr class="w-64 h-1 my-16 bg-gray-900 border-0 rounded dark:bg-gray-700" />
-          <div class="absolute px-4 -translate-x-1/2 bg-white left-1/2 dark:bg-gray-900">
-            <svg
-              class="w-4 h-4 text-gray-700 dark:text-gray-300"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="currentColor"
-              viewBox="0 0 18 14"
-            >
-              <path d="M6 0H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3H2a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Zm10 0h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3h-1a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Z" />
-            </svg>
-          </div>
-        </div>
-
-        <h1
-          className="font-extrabold text-3xl ms-3 capitalize mb-3"
-          data-aos="fade-up"
-        >
-          Our Program :
-        </h1>
-        <div className="flex flex-wrap justify-around">
-          {programs.map((item) => (
-            <div
-              className="w-full sm:w-1/2 md:w-1/3 lg:w-1/5 p-3"
-              key={item.id}
-            >
-              <ProgramsCards {...item} />
+          <div
+            class="inline-flex items-center justify-center w-full"
+            data-aos="zoom-in-up"
+          >
+            <hr class="w-64 h-1 my-8 bg-gray-900 border-0 rounded dark:bg-gray-700" />
+            <div class="absolute px-4 -translate-x-1/2 bg-white left-1/2 dark:bg-gray-900">
+              <svg
+                class="w-4 h-4 text-gray-700 dark:text-gray-300"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor"
+                viewBox="0 0 18 14"
+              >
+                <path d="M6 0H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3H2a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Zm10 0h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3h-1a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Z" />
+              </svg>
             </div>
-          ))}
-        </div>
-
-        <div
-          class="inline-flex items-center justify-center w-full"
-          data-aos="zoom-in-up"
-        >
-          <hr class="w-64 h-1 my-16 bg-gray-900 border-0 rounded dark:bg-gray-700" />
-          <div class="absolute px-4 -translate-x-1/2 bg-white left-1/2 dark:bg-gray-900">
-            <svg
-              class="w-4 h-4 text-gray-700 dark:text-gray-300"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="currentColor"
-              viewBox="0 0 18 14"
-            >
-              <path d="M6 0H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3H2a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Zm10 0h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3h-1a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Z" />
-            </svg>
           </div>
-        </div>
 
-        <h1
-          className="font-extrabold text-3xl ms-3 capitalize"
-          data-aos="zoom-in-up"
-        >
-          Recent News :
-        </h1>
-        <div className="w-full">
-          {loadingNews ? (
-            <Loading />
-          ) : (
-            <NewsCard data={NewsData?.news.slice(0, 3)} />
-          )}
+          <div data-aos="zoom-in-up">
+            <CarouselItems images={CarouselImages} />
+          </div>
+
+          <div
+            class="inline-flex items-center justify-center w-full"
+            data-aos="zoom-in-up"
+          >
+            <hr class="w-64 h-1 my-16 bg-gray-900 border-0 rounded dark:bg-gray-700" />
+            <div class="absolute px-4 -translate-x-1/2 bg-white left-1/2 dark:bg-gray-900">
+              <svg
+                class="w-4 h-4 text-gray-700 dark:text-gray-300"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor"
+                viewBox="0 0 18 14"
+              >
+                <path d="M6 0H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3H2a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Zm10 0h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3h-1a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Z" />
+              </svg>
+            </div>
+          </div>
+
+          <h1
+            className="font-extrabold lg:text-3xl text-3xl ms-3 capitalize mb-3"
+            data-aos="fade-up"
+          >
+            Our Program :
+          </h1>
+          <div className="w-full flex flex-wrap justify-center items-center">
+            {programs.map((item) => (
+              <div
+                className="w-full sm:w-1/2 md:w-1/3 lg:w-1/5 p-3 flex justify-center items-center"
+                key={item.id}
+              >
+                <ProgramsCards {...item} />
+              </div>
+            ))}
+          </div>
+
+          <div
+            class="inline-flex items-center justify-center w-full"
+            data-aos="zoom-in-up"
+          >
+            <hr class="w-64 h-1 my-16 bg-gray-900 border-0 rounded dark:bg-gray-700" />
+            <div class="absolute px-4 -translate-x-1/2 bg-white left-1/2 dark:bg-gray-900">
+              <svg
+                class="w-4 h-4 text-gray-700 dark:text-gray-300"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor"
+                viewBox="0 0 18 14"
+              >
+                <path d="M6 0H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3H2a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Zm10 0h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3h-1a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Z" />
+              </svg>
+            </div>
+          </div>
+
+          <h1
+            className="font-extrabold text-3xl ms-3 capitalize"
+            data-aos="zoom-in-up"
+          >
+            Recent News :
+          </h1>
+          <div className="w-full">
+            {loadingNews ? (
+              <Loading />
+            ) : (
+              <NewsCard data={NewsData?.news.slice(0, 4)} />
+            )}
+          </div>
         </div>
       </div>
       <Footers />

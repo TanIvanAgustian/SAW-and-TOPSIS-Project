@@ -23,24 +23,25 @@ export default function DetailPrograms() {
       <div className="absolute h-[400px] w-full text-white bg-headerProgram bg-no-repeat bg-cover bg-scroll">
         <div className="bg-blue-600/40 h-full">
           <div className="flex justify-center p-2 font-bold">
-            <h1 className="text-4xl uppercase font-black mt-44">
+          <h1 className="md:text-4xl lg:text-4xl text-2xl uppercase font-black mt-44">
               {" "}
-              News{" "}
+              Program{" "}
             </h1>
           </div>
           <div className="flex justify-center font-bold">
-            <BreadCrumb items={["news"]} />
+            <BreadCrumb items={["program"]} />
           </div>
         </div>
       </div>
-      <div className="bg-blue-700 relative top-[400px] pt-16">
-        <div className=" bg-white rounded mx-16 p-8 mb-16">
+      <div className="bg-blue-700 relative top-[400px] lg:pt-9 md:pt-5">
+      <div className="p-3">
+        <div className=" bg-white rounded lg:mx-9 lg:mb-9 md:mx-5 md:mb-5 lg:p-6 md:p-4">
           {loadingNews && loading ? (
             <Loading />
           ) : (
-            <div className="flex">
-              <div className="w-9/12">
-                <div className="text-gray-900 text-center font-bold capitalize text-3xl mb-2">
+            <div className="lg:flex flex-1">
+                <div className="lg:w-9/12 w-full lg:px-0 px-6">
+                  <div className="font-black text-center capitalize mb-1 pt-3 lg:text-3xl md:text-2xl text-xl">
                   {detailPrograms?.title}
                 </div>
                 <div className="text-gray-400 text-center text-base mb-2">
@@ -49,7 +50,7 @@ export default function DetailPrograms() {
                   )}
                 </div>
                 <img
-                  className="h-48 lg:h-auto my-3 rounded-2xl lg:w-full flex-none object-cover object-center mx-auto text-center overflow-hidden"
+                 className="h-full lg:max-h-[800px] w-full my-3 rounded-2xl lg:w-full flex-none object-cover object-center mx-auto text-center overflow-hidden"
                   src={detailPrograms?.header_image}
                   alt="Gagal Load"
                 />
@@ -65,14 +66,16 @@ export default function DetailPrograms() {
                   </Link>
                 ) : null}
               </div>
-              <div className="w-3/12 mx-4">
+              <div className="lg:w-3/12 w-full lg:mx-4 lg:px-0 px-3">
+                  <div className="grid grid-cols-1">
                 <Link to="/news">
                   <h1 className="text-blue-600 text-xl font-semibold hover:text-blue-400 my-4">
                     Baca juga :
                   </h1>
                 </Link>
+                <div className="grid lg:grid-cols-1 md:grid-cols-2 sm:grid-cols-2 grid-cols-1">
                 {NewsData?.news.slice(0, 2).map((news) => (
-                  <div className="rounded overflow-hidden shadow-lg h-fit flex flex-col my-1">
+                  <div className="rounded overflow-hidden shadow-lg lg:h-fit md:h-full sm:h-full h-fit flex flex-col my-1 lg:mx-0 md:mx-3 sm:mx-3">
                     <img
                       className="w-full h-48 object-cover object-center"
                       src={news.image}
@@ -107,17 +110,17 @@ export default function DetailPrograms() {
                             />
                           </svg>
                         </a>
+                        
                       </Link>
                     </div>
                   </div>
-                ))}
+                ))}</div>
+                        </div>
                 <div className="border-b-2 border-blue-400 my-4" />
-                <Link to="/programs">
-                  <h1 className="text-blue-600 text-xl font-semibold hover:text-blue-800 my-4">
-                    Program terbaru kami :
-                  </h1>
-                </Link>
-                <ul class="max-w-md space-y-1 text-gray-500 font-medium  dark:text-gray-400">
+                <h1 className="text-blue-600 lg:text-xl md:text-xl text-lg font-semibold hover:text-blue-800 my-4">
+                      Program terbaru kami :
+                    </h1>
+                    <ul class="max-w-md space-y-1 text-gray-500 font-medium lg:text-base mg:text-base text-sm dark:text-gray-400 pb-3">
                   {otherPrograms?.slice(0, 3).map((program) => (
                     <Link to={"/programs/content/" + program.id}>
                       <li className="my-2 hover:animate-pulse">
@@ -130,7 +133,7 @@ export default function DetailPrograms() {
             </div>
           )}
         </div>
-
+</div>
         <Footers />
       </div>
     </div>
