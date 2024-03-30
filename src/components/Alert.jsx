@@ -9,8 +9,8 @@ const Alert = ({ variant, message, onClose }) => {
     })
     const variants = {
         success:
-            "bg-green-600 border w-1/2 text-white font-normal text-p3 px-4 py-2 rounded-full",
-        danger: "bg-red-600 border w-1/2 text-white font-normal text-p3 px-4 py-2 rounded-full",
+            "bg-green-600 border lg:w-5/12 md:w-7/12 w-10/12 text-white font-normal lg:text-lg md:text-base text-sm px-4 py-2 rounded-full",
+        danger: "bg-red-600 border lg:w-5/12 md:w-7/12 w-10/12 text-white font-normal lg:text-lg md:text-base text-sm px-4 py-2 rounded-full",
     };
 
     const border = {
@@ -18,9 +18,9 @@ const Alert = ({ variant, message, onClose }) => {
         danger: "bg-red-50",
     };
     return (
-        <div className="fixed inset-0 top-20 h-fit flex items-start justify-center z-20 transition-opacity opacity-100" data-aos="fade-down">
+        <div className="fixed inset-0 top-10 h-fit flex items-start justify-center z-50 transition-opacity opacity-100" data-aos="fade-down">
             <div
-                className={`flex justify-between items-center min-w-[343px] w-fit h-[44px] ${variants[variant]}`}
+                className={`flex justify-between items-center lg:min-w-[343px] min-w-[200px] w-fit h-[44px] ${variants[variant]}`}
                 role="alert"
             >
                 <div className="flex gap-2 items-center">

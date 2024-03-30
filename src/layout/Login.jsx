@@ -56,10 +56,12 @@ export default function Login() {
   });
 
   return (
-    <section className="dark:bg-gray-900 bg-headerOrganization bg-no-repeat bg-cover bg-scroll">
-      <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+    <section className="dark:bg-gray-900 bg-headerOrganization bg-no-repeat bg-cover bg-center bg-scroll h-screen">
+
+<div className="flex flex-col items-center justify-center h-full px-6 py-8 mx-auto md:h-screen lg:py-0">
+
         <div
-          className="flex items-center text-2xl font-semibold text-white dark:text-white bg-transparent p-3 rounded mb-2 align-middle"
+          className="flex items-center lg:text-2xl md:text-2xl sm:text-xl text-lg font-semibold text-white dark:text-white bg-transparent p-3 rounded mb-2 align-middle"
         >
           <img className="w-8 h-8 mr-2 bg-white rounded-full" src={Logo} alt="logo" />
           Gita Dian Nuswa
@@ -83,7 +85,7 @@ export default function Login() {
                 <input
                   type="text"
                   id="email"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 lg:text-base md:text-base text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="Enter Your Email"
                   value={formik.values.email}
                   onChange={formik.handleChange}
@@ -123,7 +125,7 @@ export default function Login() {
                   type="password"
                   id="password"
                   placeholder="••••••••"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 lg:text-base md:text-base text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   value={formik.values.password}
                   onChange={formik.handleChange}
                 />
@@ -153,14 +155,7 @@ export default function Login() {
                   </>
                 )}
               </div>
-              <div className="flex items-center justify-end">
-                <a
-                  href="#"
-                  className="text-sm font-medium text-blue-600 hover:underline dark:text-blue-500"
-                >
-                  Forgot password?
-                </a>
-              </div>
+              
               <button
                 type="submit"
                 className="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
