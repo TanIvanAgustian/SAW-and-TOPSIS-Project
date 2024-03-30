@@ -243,7 +243,7 @@ export default function AddUsers() {
           </div>
         )}
 
-        <div className="w-8/12 mx-3">
+        <div className="lg:w-8/12 lg:mx-3 w-full">
           <div className="my-6">
             <label
               for="success"

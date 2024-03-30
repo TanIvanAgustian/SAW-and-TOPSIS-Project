@@ -133,7 +133,7 @@ export default function EditRank() {
   return (
     <form onSubmit={formik.handleSubmit}>
       <div className="lg:flex relative">
-        <div className="w-full mx-3">
+        <div className="w-full lg:mx-3">
           <div className="my-6">
             <label
               for="default"
@@ -149,7 +149,7 @@ export default function EditRank() {
               value={formik.values.name}
             />
           </div>
-          <div className="grid grid-cols-4 justify-around w-full gap-6">
+          <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 justify-around w-full gap-6">
             <div>
               <label
                 for="default"

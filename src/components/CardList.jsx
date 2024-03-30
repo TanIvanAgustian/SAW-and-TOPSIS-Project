@@ -137,7 +137,7 @@ export default function CardList(props) {
         }
       >
         {member?.map((anggota) => (
-          <Card className="group mt-6 w-[275px] mx-1 bg-blue-700 rounded-2xl text-white pt-3 pb-[20px]" data-aos="zoom-in-up">
+          <Card className="group mt-6 w-[275px] mx-1 bg-blue-700 rounded-2xl text-white pt-3 pb-[100px]" data-aos="zoom-in-up">
             <CardHeader
               color="blue-gray"
               className="relative w-[200px] h-[200px] m-1 self-center rounded-full group-hover:animate-bigger-slowly"

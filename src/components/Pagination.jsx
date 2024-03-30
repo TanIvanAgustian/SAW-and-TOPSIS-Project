@@ -33,7 +33,7 @@ export default function Pagination({ itemsPerPage, totalItems, paginate, current
         <p className="lg:block hidden">
         Previous</p>
       </button>
-        <ul className="pagination flex items-center gap-2">
+        <ul className="pagination flex-wrap items-center gap-1">
           {pageNumbers.map((number) => (
             <li key={number} className="page-item">
               <button

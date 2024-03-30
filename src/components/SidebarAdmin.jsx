@@ -16,22 +16,22 @@ export default function SidebarAdmin() {
     setIsDropdownOpen((prev) => !prev);
   };
 
-  const mobileDropdown = () => {
-    setMobileMenuOpen(!mobileMenuOpen);
+  const mobileDropdown = (bool) => {
+    setMobileMenuOpen(bool);
   };
 
   const profilImage = getAuthCookieImage();
 
   return (
     <div>
-      <nav className="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+      <nav className="fixed top-0 z-40 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
         <div className="px-3 py-3 lg:px-5 lg:pl-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center justify-start rtl:justify-end">
               <button
-                onClick={mobileDropdown}
+                onClick={() => mobileDropdown(!mobileMenuOpen)}
                 type="button"
-                className="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                className="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
               >
                 <span className="sr-only">Open sidebar</span>
                 <svg
@@ -121,9 +121,9 @@ export default function SidebarAdmin() {
       </nav>
       <aside
         id="logo-sidebar"
-        className={`fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform ${
+        className={`fixed top-0 left-0 z-30 w-64 h-screen pt-20 transition-transform ${
           mobileMenuOpen ? "translate-x-0" : "-translate-x-full"
-        } bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700`}
+        } bg-white border-r border-gray-200 lg:translate-x-0 -translate-x-full dark:bg-gray-800 dark:border-gray-700`}
         aria-label="Sidebar"
       >
         <div className="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
@@ -132,7 +132,7 @@ export default function SidebarAdmin() {
               <Link
                 to="/admin"
                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-                onClick={mobileDropdown}
+                onClick={() => mobileDropdown(false)}
               >
                 <img src={User} className="w-5 h-5"/>
                 <span className="ms-3">Member</span>
@@ -142,7 +142,7 @@ export default function SidebarAdmin() {
               <Link
                 to="/admin/programs"
                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-                onClick={mobileDropdown}
+                onClick={() => mobileDropdown(false)}
               >
                 <img src={Program} className="w-5 h-5"/>
                 <span className="ms-3">Programs</span>
@@ -152,7 +152,7 @@ export default function SidebarAdmin() {
               <Link
                 to="/admin/news"
                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-                onClick={mobileDropdown}
+                onClick={() => mobileDropdown(false)}
               >
                 <img src={News} className="w-5 h-5"/>
                 <span className="ms-3">News</span>
@@ -162,7 +162,7 @@ export default function SidebarAdmin() {
               <Link
                 to="/admin/rank"
                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-                onClick={mobileDropdown}
+                onClick={() => mobileDropdown(false)}
               >
                 <img src={Rank} className="w-5 h-5"/>
                 <span className="ms-3">Rank</span>
