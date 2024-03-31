@@ -63,10 +63,10 @@ export default function Navbar() {
   return (
     <header className="bg-blue-800/50 hover:bg-blue-800/100 absolute z-10 w-full">
       <nav
-        className="mx-auto flex max-w-7xl items-center  justify-between lg:pb-6 md:pb-3"
+        className="mx-auto flex max-w-7xl items-center  justify-between lg:pb-6 pb-3"
         aria-label="Global"
       >
-        <div className="flex items-center justify-center lg:pt-6 md:pt-3">
+        <div className="flex items-center justify-center lg:pt-6 pt-3">
           
           <a href="/" className="flex items-center m-1.5 p-1.5">
             <img
@@ -81,7 +81,7 @@ export default function Navbar() {
         <div className="flex lg:hidden text-white">
           <button
             type="button"
-            className="inline-flex items-center justify-center rounded-md md:mt-6 mt-1 p-1.5 md:me-6 me-2 hover:bg-white  hover:text-black"
+            className="inline-flex items-center justify-center rounded-md md:mt-6 mt-3 p-1.5 md:me-6 me-3 hover:bg-white  hover:text-black"
             onClick={() => setMobileMenuOpen(true)}
           >
             <span className="sr-only">Open main menu</span>

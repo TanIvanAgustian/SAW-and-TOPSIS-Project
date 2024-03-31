@@ -61,18 +61,14 @@ export default function NewsDisplay() {
           ) : NewsData?.news.filter((element) =>
               element.title.toLowerCase().includes(search.toLowerCase())
             ).length > 0 ? (
+              <div>
             <NewsCard
               data={NewsData?.news
                 .filter((element) =>
                   element.title.toLowerCase().includes(search.toLowerCase())
                 )
                 .slice(indexOfFirstItem, indexOfLastItem)}
-            />
-          ) : (
-            <ItemNotFound />
-          )}
-
-          <div className="flex items-center justify-center border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
+            /><div className="flex items-center justify-center border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
             <div className="flex lg:flex-1 md:flex-1 sm:items-center justify-between">
               <div>
                 <p className="text-sm text-gray-700 hidden md:block lg:block">
@@ -113,7 +109,12 @@ export default function NewsDisplay() {
                 currentPage={currentPage}
               />
             </div>
-          </div>
+          </div></div>
+          ) : (
+            <ItemNotFound />
+          )}
+
+          
         </div>
         </div>
         <Footers />
