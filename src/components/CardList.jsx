@@ -29,13 +29,13 @@ export default function CardList(props) {
       </h1>
       <div className={style}>
         {koor?.map((anggota) => (
-          <Card className="mt-6 w-auto mx-2 bg-blue-700 rounded-2xl text-white pt-3 px-3 pb-[75px]" data-aos="zoom-in-up">
+          <Card className="group mt-6 w-auto mx-2 bg-blue-700 rounded-2xl text-white pt-3 px-3 pb-[75px]" data-aos="zoom-in-up">
             <CardHeader
               color="blue-gray"
-              className="relative lg:w-[300px] lg:h-[300px] sm:h-[200px] sm:w-[200px] self-center rounded-full"
+              className="relative lg:w-[300px] lg:h-[300px] sm:h-[200px] sm:w-[200px] self-center rounded-full group-hover:animate-bigger-slowly"
             >
               <img
-                className="bg-transparent aspect-square object-cover"
+                className="bg-transparent aspect-square object-cover "
                 src={anggota.image}
                 alt="card-image"
               />

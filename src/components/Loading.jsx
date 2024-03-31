@@ -29,7 +29,7 @@ export default function Loading() {
 export function LoadingWithLogo() {
   return (
     <div className="flex flex-col justify-center items-center h-screen">
-      <img src={Logo} alt="Loading logo" className="w-20 h-20 animate-ping" />
+      <img src={Logo} alt="Loading logo" className="lg:w-20 w-12 lg:h-20 h-12 animate-ping" />
     </div>
   );
 }

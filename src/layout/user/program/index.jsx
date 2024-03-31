@@ -65,59 +65,63 @@ export default function Programs() {
             ) : eventItems?.filter((element) =>
                 element.title.toLowerCase().includes(search.toLowerCase())
               ).length > 0 ? (
-              <DisplayPrograms
-                data={eventItems?.filter((element) =>
-                  element.title.toLowerCase().includes(search.toLowerCase())
-                )}
-              />
-            ) : (
-              <ItemNotFound />
-            )}
-
-<div className="flex items-center justify-center border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
-            <div className="flex lg:flex-1 md:flex-1 sm:items-center justify-between">
               <div>
-                <p className="text-sm text-gray-700 hidden md:block lg:block">
-                    Showing{" "}
-                    <span className="font-medium">{indexOfFirstItem}</span> to{" "}
-                    <span className="font-medium">
-                      {Math.ceil(
+                <DisplayPrograms
+                  data={eventItems?.filter((element) =>
+                    element.title.toLowerCase().includes(search.toLowerCase())
+                  )}
+                />
+                <div className="flex items-center justify-center border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
+                  <div className="flex lg:flex-1 md:flex-1 sm:items-center justify-between">
+                    <div>
+                      <p className="text-sm text-gray-700 hidden md:block lg:block">
+                        Showing{" "}
+                        <span className="font-medium">{indexOfFirstItem}</span>{" "}
+                        to{" "}
+                        <span className="font-medium">
+                          {Math.ceil(
+                            eventItems?.filter((element) =>
+                              element.title
+                                .toLowerCase()
+                                .includes(search.toLowerCase())
+                            ).length / itemsPerPage
+                          ) == currentPage
+                            ? eventItems?.filter((element) =>
+                                element.title
+                                  .toLowerCase()
+                                  .includes(search.toLowerCase())
+                              ).length
+                            : indexOfLastItem}
+                        </span>{" "}
+                        of{" "}
+                        <span className="font-medium">
+                          {eventItems?.filter((element) =>
+                            element.title
+                              .toLowerCase()
+                              .includes(search.toLowerCase())
+                          ).length + " "}
+                        </span>
+                        results
+                      </p>
+                    </div>
+                    <Pagination
+                      itemsPerPage={itemsPerPage}
+                      totalItems={
                         eventItems?.filter((element) =>
                           element.title
                             .toLowerCase()
                             .includes(search.toLowerCase())
-                        ).length / itemsPerPage
-                      ) == currentPage
-                        ? eventItems?.filter((element) =>
-                            element.title
-                              .toLowerCase()
-                              .includes(search.toLowerCase())
-                          ).length
-                        : indexOfLastItem}
-                    </span>{" "}
-                    of{" "}
-                    <span className="font-medium">
-                      {eventItems?.filter((element) =>
-                        element.title
-                          .toLowerCase()
-                          .includes(search.toLowerCase())
-                      ).length + " "}
-                    </span>
-                    results
-                  </p>
+                        ).length
+                      }
+                      paginate={paginate}
+                      currentPage={currentPage}
+                    />
+                  </div>
                 </div>
-                <Pagination
-                  itemsPerPage={itemsPerPage}
-                  totalItems={
-                    eventItems?.filter((element) =>
-                      element.title.toLowerCase().includes(search.toLowerCase())
-                    ).length
-                  }
-                  paginate={paginate}
-                  currentPage={currentPage}
-                />
               </div>
-            </div>
+            ) : (
+              <ItemNotFound />
+            )}
           </div>
         </div>
 

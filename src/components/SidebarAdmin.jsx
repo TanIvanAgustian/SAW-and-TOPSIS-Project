@@ -3,10 +3,10 @@ import { PencilIcon } from "@heroicons/react/24/solid";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import Logo from "../assets/logo_PSM.png";
-import Rank from "../assets/Icons/ranking-podium.png"
-import News from "../assets/Icons/news.png"
-import Program from "../assets/Icons/program.png"
-import User from "../assets/Icons/user.png"
+import Rank from "../assets/Icons/ranking-podium.png";
+import News from "../assets/Icons/news.png";
+import Program from "../assets/Icons/program.png";
+import User from "../assets/Icons/user.png";
 
 export default function SidebarAdmin() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -78,26 +78,10 @@ export default function SidebarAdmin() {
                     >
                       <li>
                         <a
-                          href="#"
+                          href="/"
                           className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                         >
                           Dashboard
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="#"
-                          className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                        >
-                          Settings
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="#"
-                          className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                        >
-                          Earnings
                         </a>
                       </li>
                     </ul>
@@ -134,7 +118,7 @@ export default function SidebarAdmin() {
                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
                 onClick={() => mobileDropdown(false)}
               >
-                <img src={User} className="w-5 h-5"/>
+                <img src={User} className="w-5 h-5" />
                 <span className="ms-3">Member</span>
               </Link>
             </li>
@@ -144,7 +128,7 @@ export default function SidebarAdmin() {
                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
                 onClick={() => mobileDropdown(false)}
               >
-                <img src={Program} className="w-5 h-5"/>
+                <img src={Program} className="w-5 h-5" />
                 <span className="ms-3">Programs</span>
               </Link>
             </li>
@@ -154,7 +138,7 @@ export default function SidebarAdmin() {
                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
                 onClick={() => mobileDropdown(false)}
               >
-                <img src={News} className="w-5 h-5"/>
+                <img src={News} className="w-5 h-5" />
                 <span className="ms-3">News</span>
               </Link>
             </li>
@@ -164,7 +148,7 @@ export default function SidebarAdmin() {
                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
                 onClick={() => mobileDropdown(false)}
               >
-                <img src={Rank} className="w-5 h-5"/>
+                <img src={Rank} className="w-5 h-5" />
                 <span className="ms-3">Rank</span>
               </Link>
             </li>

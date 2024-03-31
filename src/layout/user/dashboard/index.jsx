@@ -69,7 +69,7 @@ export default function Dashboard() {
   return (
     <div className="bg-blue-800">
       <video
-        className="md:max-lg:h-full min-h-[20rem] object-cover w-full rounded-lg aspect-w-16 aspect-h-9"
+        className="md:max-lg:h-full min-h-[25rem] object-cover w-full rounded-lg aspect-w-16 aspect-h-9"
         autoPlay
         muted
         loop
@@ -78,7 +78,7 @@ export default function Dashboard() {
         Your browser does not support the video tag.
       </video>
 
-      <div className="absolute inset-0 lg:h-[50rem] md:h-[35rem] sm:h-[25rem] h-[20rem] flex flex-col justify-center items-center text-white">
+      <div className="absolute inset-0 lg:h-[50rem] md:h-[35rem] h-[25rem]  flex flex-col justify-center items-center text-white">
         <div className="flex justify-center font-bold p-2">
           <h1 className="md:text-4xl lg:text-5xl text-2xl uppercase">
             {" "}
@@ -130,11 +130,11 @@ export default function Dashboard() {
         <div className="lg:p-6 md:p-4 lg:m-9 md:m-5  bg-white rounded-lg">
           <h1
             data-aos="zoom-in-up"
-            className="uppercase text-center mb-4 pt-4 lg:text-5xl md:text-3xl text-xl font-extrabold leading-none tracking-tight text-gray-900 dark:text-white"
+            className="uppercase text-center mb-4 pt-4 lg:mx-2 md:mx-2 mx-8 lg:text-5xl md:text-3xl text-xl font-extrabold leading-none tracking-tight text-gray-900 dark:text-white"
           >
             Gita
             <mark className="px-2 py-0 bg-transparent text-blue-700">Dian</mark>
-            Nuswa
+            Nuswa{" "}
             <mark class="lg:text-xl md:text-base text-sm ms-1 align-super px-2 py-0 text-white bg-blue-700 rounded dark:bg-blue-500">
               Official Website
             </mark>
@@ -158,7 +158,7 @@ export default function Dashboard() {
             class="inline-flex items-center justify-center w-full"
             data-aos="zoom-in-up"
           >
-            <hr class="w-64 h-1 my-8 bg-gray-900 border-0 rounded dark:bg-gray-700" />
+            <hr class="w-64 h-1 lg:my-16 my-8 bg-gray-900 border-0 rounded dark:bg-gray-700" />
             <div class="absolute px-4 -translate-x-1/2 bg-white left-1/2 dark:bg-gray-900">
               <svg
                 class="w-4 h-4 text-gray-700 dark:text-gray-300"
@@ -180,7 +180,7 @@ export default function Dashboard() {
             class="inline-flex items-center justify-center w-full"
             data-aos="zoom-in-up"
           >
-            <hr class="w-64 h-1 my-16 bg-gray-900 border-0 rounded dark:bg-gray-700" />
+            <hr class="w-64 h-1 lg:my-16 my-8 bg-gray-900 border-0 rounded dark:bg-gray-700" />
             <div class="absolute px-4 -translate-x-1/2 bg-white left-1/2 dark:bg-gray-900">
               <svg
                 class="w-4 h-4 text-gray-700 dark:text-gray-300"
@@ -215,7 +215,7 @@ export default function Dashboard() {
             class="inline-flex items-center justify-center w-full"
             data-aos="zoom-in-up"
           >
-            <hr class="w-64 h-1 my-16 bg-gray-900 border-0 rounded dark:bg-gray-700" />
+            <hr class="w-64 h-1 lg:my-16 my-10 bg-gray-900 border-0 rounded dark:bg-gray-700" />
             <div class="absolute px-4 -translate-x-1/2 bg-white left-1/2 dark:bg-gray-900">
               <svg
                 class="w-4 h-4 text-gray-700 dark:text-gray-300"
