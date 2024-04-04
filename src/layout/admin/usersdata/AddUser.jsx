@@ -4,8 +4,6 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { GraphQlInputUsers } from "../../../graphql/GraphQlUsers";
 import Alert from "../../../components/Alert";
-import { v4 as uuidv4 } from 'uuid';
-import { GraphQlInputRank } from "../../../graphql/GraphQlRank";
 
 export default function AddUsers() {
   const jenisSuara = [
@@ -61,7 +59,6 @@ export default function AddUsers() {
   const [url, setUrl] = useState("");
 
   const { AddUsers, loading, error } = GraphQlInputUsers();
-  const { AddRank } = GraphQlInputRank();
 
   const formik = useFormik({
     initialValues: {
@@ -90,21 +87,10 @@ export default function AddUsers() {
       if (url !== "") {
         Images = { image: url }; // Assign value to Images if url is not empty
       }
-      const uuid = uuidv4();
-
-      await AddRank({
-        variables: {
-          object: {
-            id:uuid,
-            name: formik.values.name,
-          }
-        }
-      })
       await AddUsers({
         variables: {
           object: {
             ...Images, // Spread Images object here
-            id:uuid,
             name: formik.values.name,
             email: formik.values.email,
             password: formik.values.password,

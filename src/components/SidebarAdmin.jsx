@@ -152,6 +152,18 @@ export default function SidebarAdmin() {
                 <span className="ms-3">Rank</span>
               </Link>
             </li>
+            <li>
+              <Link
+                to="/admin/competition"
+                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                onClick={() => mobileDropdown(false)}
+              >
+                <img src={Rank} className="w-5 h-5" />
+                <span className="ms-3">
+                  Competition
+                </span>
+              </Link>
+            </li>
           </ul>
         </div>
       </aside>
