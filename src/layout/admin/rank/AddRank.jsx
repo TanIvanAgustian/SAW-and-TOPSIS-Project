@@ -1,19 +1,33 @@
 import { useState } from "react";
-import {
-  GraphQLUpdateRankById,
-  GraphQlRank,
-} from "../../../graphql/GraphQlRank";
+import { GraphQlInputRank } from "../../../graphql/GraphQlRank";
+import { GraphQlUsers } from "../../../graphql/GraphQlUsers";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
 import Alert from "../../../components/Alert";
+import { useParams } from "react-router-dom";
+import { GraphQlCompetition } from "../../../graphql/GraphQlCompetition";
+import { GraphQlRank } from "../../../graphql/GraphQlRank";
 
 export default function AddRank() {
   const navigate = useNavigate();
-  const { data, loading, error } = GraphQlRank();
-  const dataNama = data?.rank.filter((element) => element.nilai == null);
+  const { competitionId } = useParams();
+  const { data, loading, error } = GraphQlUsers();
+  const { dataRank, loadingRank, errorRank } = GraphQlRank();
+  const { AddRank, Addloading, Adderror } = GraphQlInputRank();
 
-  const { UpdateRank, LoadingRank, ErrorRank } = GraphQLUpdateRankById();
+  const dataNama = data?.users.filter((User) => {
+    if (User.name !== "Admin") {
+      const allRank = dataRank?.rank.filter((Rank) => Rank.competitionId == competitionId)
+      const matchFound = allRank?.some(
+        (Ranking) => User.id === Ranking.userId
+      );
+
+      return !matchFound;
+    }
+  });
+
+  console.log(dataNama);
 
   const [isAlert, setIsAlert] = useState(false);
   const [message, setMessage] = useState("");
@@ -59,16 +73,21 @@ export default function AddRank() {
         .required("Nilai Kosong"),
     }),
     onSubmit: async () => {
+      const userIdentity = formik.values.id.split("!");
+
       const nilai = CalculatePrefvalue(
         formik.values.support,
         formik.values.placement,
         formik.values.ruangan,
         formik.values.keaktifan
       );
-      await UpdateRank({
+      await AddRank({
         variables: {
-          id: formik.values.id,
           object: {
+            userId: userIdentity[0],
+            name: userIdentity[1],
+            voice_Type: userIdentity[2],
+            competitionId: competitionId,
             support: formik.values.support,
             placement: formik.values.placement,
             ruangan: formik.values.ruangan,
@@ -135,7 +154,7 @@ export default function AddRank() {
             >
               <option value="">Pilih Penerima Nilai</option>
               {dataNama?.map((item) => (
-                <option value={item.id}>{item.name}</option>
+                <option value={item.id + "!" + item.name + "!" + item.voice_type}>{item.name}</option>
               ))}
             </select>
             {formik.errors.id && formik.touched.id && (
@@ -236,7 +255,7 @@ export default function AddRank() {
           <div className="flex w-full mt-6 justify-end ">
             {/*Submit button*/}
             <div className="text-center">
-              {!LoadingRank ? (
+              {Addloading ? (
                 <button
                   id="btn_add_product"
                   className="text-p3 ms-3 mb-3 w-fit px-6 inline-block bg-blue-700 rounded-full py-2 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_rgba(0,0,0,0.2)] transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:outline-none focus:ring-0 active:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] disabled:bg-blue-400"

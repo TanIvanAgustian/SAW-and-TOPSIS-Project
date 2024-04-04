@@ -10,12 +10,12 @@ import Alert from "../../../components/Alert";
 
 export default function EditRank() {
   const navigate = useNavigate();
-  const { data, loading, error } = GraphQlRank();
+  const { dataRank, loadingRank, errorRank } = GraphQlRank();
   const { id } = useParams();
 
   useEffect(() => {
-    if (data) {
-      const rank = data?.rank.find((element) => element.id == id);
+    if (dataRank) {
+      const rank = dataRank?.rank.find((element) => element.id == id);
       const dataInialisasi = {
         name: rank.name,
         support: rank.support,
@@ -25,8 +25,8 @@ export default function EditRank() {
       };
       formik.setValues(dataInialisasi);
     }
-  }, [data]);
-  if (error) return <ErrorPage />;
+  }, [dataRank]);
+  if (errorRank) return <ErrorPage />;
 
   const { UpdateRank, LoadingRank, ErrorRank } = GraphQLUpdateRankById();
 

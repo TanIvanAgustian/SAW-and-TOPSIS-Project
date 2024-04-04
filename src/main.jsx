@@ -35,6 +35,9 @@ import AddRank from "./layout/admin/rank/AddRank";
 import EditRank from "./layout/admin/rank/EditRank";
 import NewsDisplay from "./layout/user/news";
 import NewsDetail from "./layout/user/news/NewsDetail";
+import Competition from "./layout/admin/competition";
+import AddCompetition from "./layout/admin/competition/AddCompetition";
+import EditCompetition from "./layout/admin/competition/EditCompetition";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -71,8 +74,12 @@ const router = createBrowserRouter(
           <Route path="/admin/news/editnews/:id" element={<EditNews />} />
 
           <Route path="/admin/rank" element={<RankData />} />
-          <Route path="/admin/rank/addrank" element={<AddRank/>} />
+          <Route path="/admin/rank/addrank/:competitionId" element={<AddRank/>} />
           <Route path="/admin/rank/editrank/:id" element={<EditRank/>} />
+
+          <Route path="/admin/competition" element={<Competition />} />
+          <Route path="/admin/competition/addcompetition" element={<AddCompetition/>} />
+          <Route path="/admin/competition/editcompetition/:id" element={<EditCompetition/>} />
         </Route>
       </Route>
       <Route path="*" element={<NotFound />} />

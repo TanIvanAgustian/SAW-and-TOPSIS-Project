@@ -10,31 +10,28 @@ const getRank = gql`
       ruangan
       keaktifan
       nilai
+      competitionId
+      userId
+      voice_Type
     }
   }
 `;
 export function GraphQlRank() {
   const { data, loading, error } = useSubscription(getRank);
-  return { data, loading, error };
+  return { dataRank:data, loadingRank:loading, errorRank:error };
 }
 
 const inputRank = gql`
   mutation MyMutation($object: rank_insert_input!) {
     insert_rank_one(object: $object) {
         id
-        name
-        support
-        placement
-        ruangan
-        keaktifan
-        nilai
     }
   }
 `;
 
 export function GraphQlInputRank() {
   const [AddRank, loading, error] = useMutation(inputRank);
-  return { AddRank, loading, error };
+  return { AddRank, Addloading:loading, Adderror:error };
 }
 
 const updateRankById = gql`
