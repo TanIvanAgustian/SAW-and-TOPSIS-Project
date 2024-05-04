@@ -112,25 +112,25 @@ export default function AddRank() {
     let PositiveRange = 0;
     let NegativeRange = 0;
 
+    // menentukan solusi ideal positif dan negatif
+    const IdealPositive = bobot;
+    const IdealNegative = 0;
+
     for (let i = 0; ValueList.length > i; i++) {
       // perhitungan skor alternatif
       let nilai = ValueList[i] / 100;
       nilai = nilai * bobot[i];
 
-      // menentukan solusi ideal positif dan negatif
-      const IdealPositive = bobot;
-      const IdealNegative = 0;
-
       // menentukan jarak ideal positif dan negatif tiap value
-      let PositiveValue = (IdealNegative - nilai) ** 2;
-      let NegativeValue = (IdealPositive[i] - nilai) ** 2;
+      let PositiveValue = (IdealPositive[i] - nilai) ** 2;
+      let NegativeValue = (IdealNegative - nilai) ** 2;
 
       PositiveRange = PositiveRange + PositiveValue;
       NegativeRange = NegativeRange + NegativeValue;
     }
 
     // menghitung nilai preferensi
-    let FinalValue = (PositiveRange / (PositiveRange + NegativeRange)) * 100;
+    let FinalValue = (NegativeRange / (NegativeRange + PositiveRange)) * 100;
 
     return FinalValue;
   };
