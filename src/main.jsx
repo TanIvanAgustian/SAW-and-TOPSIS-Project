@@ -38,6 +38,7 @@ import NewsDetail from "./layout/user/news/NewsDetail";
 import Competition from "./layout/admin/competition";
 import AddCompetition from "./layout/admin/competition/AddCompetition";
 import EditCompetition from "./layout/admin/competition/EditCompetition";
+import EditKategory from "./layout/admin/rank/EditKategory";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -76,6 +77,7 @@ const router = createBrowserRouter(
           <Route path="/admin/rank" element={<RankData />} />
           <Route path="/admin/rank/addrank/:competitionId" element={<AddRank/>} />
           <Route path="/admin/rank/editrank/:id" element={<EditRank/>} />
+          <Route path="/admin/rank/editkategori" element={<EditKategory/>} />
 
           <Route path="/admin/competition" element={<Competition />} />
           <Route path="/admin/competition/addcompetition" element={<AddCompetition/>} />

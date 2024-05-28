@@ -6,12 +6,14 @@ import {
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useNavigate, useParams } from "react-router-dom";
+import { GraphQlKategory } from "../../../graphql/GraphQlKategory";
 import Alert from "../../../components/Alert";
 
 export default function EditRank() {
   const navigate = useNavigate();
   const { dataRank, loadingRank, errorRank } = GraphQlRank();
   const { id } = useParams();
+  const { dataKategory } = GraphQlKategory()
 
   useEffect(() => {
     if (dataRank) {
@@ -98,11 +100,14 @@ export default function EditRank() {
     },
   });
 
+  const weight = dataKategory?.kategori.filter((element) => "weight" in element)
+  const ArrayWeight = weight?.map(item => item["weight"]);
+
   const CalculatePrefvalue = (support, placement, ruangan, keaktifan) => {
     // Normalisasi Matriks keputusan
     const ValueList = [support, placement, ruangan, keaktifan];
     // menentukan bobot
-    const bobot = [0.3, 0.2, 0.2, 0.3];
+    const bobot = ArrayWeight;
 
     let PositiveRange = 0;
     let NegativeRange = 0;

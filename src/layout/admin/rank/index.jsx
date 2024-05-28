@@ -70,6 +70,7 @@ export default function RankData() {
           }}
           value={search}
         />
+        <div>
         <Link
           to={"./addrank/" + competitionId}
           className="mt-3 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-3xl lg:text-sm md:text-sm text-xs p-2 px-4 lg:w-80 md:w-4/12 w-fit text-center flex items-center container justify-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
@@ -77,6 +78,14 @@ export default function RankData() {
           Beri Nilai
           <PlusIcon className="lg:h-6 h-4 lg:w-6 w-4 ml-1" />
         </Link>
+        <Link
+          to={"./editkategori"}
+          className="mt-3 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-3xl lg:text-sm md:text-sm text-xs p-2 px-4 lg:w-80 md:w-4/12 w-fit text-center flex items-center container justify-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        >
+          Edit Kategori
+          <PencilIcon className="lg:h-6 h-4 lg:w-6 w-4 ml-1" />
+        </Link>
+        </div>
       </div>
 
       <div>
